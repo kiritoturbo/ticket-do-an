@@ -1,0 +1,327 @@
+.customCard {
+  width: 100% !important;
+  margin: 0 auto;
+}
+
+.veriabelTopMenu {
+  position: relative;
+  background: linear-gradient(28.91deg, #F9A51A 2.24%, #FBB612 31.03%, #FBF300 97.21%);
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.jss4214 {
+  width: 39px;
+  height: 39px;
+  display: flex;
+  background: #ffffff;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: 10px;
+  border-radius: 50%;
+  justify-content: center;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  flex-shrink: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  fill: #F9A51A;
+}
+
+.jss4214 .active {
+  transform: rotate(90deg);
+  fill: white;
+}
+
+.jss4214 svg {
+  width: 1.5em;
+  height: 1.5em;
+  font-size: 16px;
+}
+
+.jss4215 {
+  background: linear-gradient(72.74deg, #459B02 -15.27%, #AAFA6B 113.22%);
+}
+
+.contentSelectFlight {
+  background-image: url(../icons/footer-pattern.0df0472f.webp), url(../icons/cloud-bg-3-Desktop.a7535435.webp), url(../icons/cloud-bg-5-Desktop.718029b4.webp);
+  display: flex;
+  overflow: hidden;
+  min-height: 100vh;
+  flex-direction: column;
+  background-size: auto, cover, cover;
+  background-repeat: no-repeat;
+  background-position: right bottom, left top, right bottom;
+  background-attachment: fixed;
+}
+
+.veriabelTopMenu {
+  padding: 10px 17px;
+}
+
+.titleTabsContent .box-title-tab>div {
+  width: 33.3333%;
+  height: 100%;
+  margin: 0px 2.5px;
+  display: flex;
+  padding: 5px 8px;
+  box-sizing: border-box;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.titleTabsContent img {
+  width: 100%;
+  margin: auto;
+  max-width: 80px;
+}
+
+.titleTabsContent .ecoTitle {
+  border: 1px solid rgb(106, 183, 46);
+  background-color: rgb(106, 183, 46);
+}
+
+.titleTabsContent .deluxeTitle {
+  border: 1px solid rgb(249, 165, 26);
+  background-color: rgb(249, 165, 26);
+}
+
+.titleTabsContent .skyBossTitle {
+  border: 1px solid rgb(218, 33, 40);
+  background-color: rgb(218, 33, 40);
+}
+
+.titleTabsContent .businessTitle {
+  border: 1px solid rgb(175, 137, 3);
+  background-color: rgb(175, 137, 3);
+}
+
+.timeBox {
+  width: 27%;
+  cursor: pointer;
+  display: flex;
+  padding: 10px 0;
+  flex-grow: 1;
+  background: linear-gradient(26.73deg, #F9A51A 13.7%, #FBB612 29.8%, #FFDD00 66.81%);
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.priceBox .itemPriceBox {
+  flex: 1;
+  background-color: #fff;
+  border-left: 1px solid #C4C4C4;
+  padding: 5px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.resultTabsContent>div {
+  margin-bottom: 20px;
+}
+
+.rightContentFlight .title {
+  background: linear-gradient(359.2deg, #D91A21 53.08%, #6F0000 206.46%);
+  text-transform: uppercase;
+  padding: 10px 20px;
+}
+
+.rightContentFlight .title h3 {
+  color: #fff;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  padding: 8px 0;
+  font-family: KoHo, sans-serif;
+}
+
+.rightContentFlight .titleInfoUser {
+  background-color: #fff;
+}
+
+.rightContentFlight .titleInfoUser>div {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  height: auto !important;
+  background: #F1F1F1;
+  min-height: 50px !important;
+  padding-left: 15px;
+  padding-right: 5px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+.rightContentFlight .checkoutFlight {
+  background: rgb(201, 239, 255);
+  padding: 13px 21px;
+}
+
+.boxCheckoutContent {
+  padding: 13px 21px;
+  background-color: #fff;
+}
+
+.boxCheckoutContent .topCheckout .infoDateFromTo {
+  font-size: 14px;
+  font-family: KoHo, sans-serif;
+  line-height: 1.33;
+}
+
+.boxCheckoutContent .topCheckout .trafficFromTo h5 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #333333;
+  font-family: KoHo, sans-serif;
+  line-height: 1.33;
+}
+
+.boxCheckoutContent .topCheckout .trafficFromTo span {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.boxCheckoutContent .InputCheckout>div {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.boxCheckoutContent .InputCheckout .box-panel-title {
+  height: 50px !important;
+  background: #F1F1F1;
+  min-height: 50px !important;
+  padding-left: 12px;
+  padding-right: 5px;
+}
+
+.boxCheckoutContent .InputCheckout .box-related-panel {
+  background-color: rgb(250, 250, 250);
+  padding-bottom: 5px;
+}
+
+.boxCheckoutContent .InputCheckout .box-related-panel div>span {
+  font-size: 14px;
+  color: #333333;
+  font-family: KoHo, sans-serif;
+}
+
+.boxCheckoutContent .InputCheckout #panel1a-header h3:first-child {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 18px;
+  color: #333333;
+  font-family: KoHo, sans-serif;
+}
+
+.boxCheckoutContent .InputCheckout #panel1a-header h3:last-child {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px;
+  color: #333333;
+  font-family: KoHo, sans-serif;
+}
+
+.totalCheckout {
+  height: 50px;
+  background: linear-gradient(359.2deg, #D91A21 53.08%, #6F0000 206.46%);
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.totalCheckout h4 {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: KoHo, sans-serif;
+  line-height: 1.17;
+}
+
+.totalCheckout span {
+  font-size: 22px;
+  font-family: JambonoMedium;
+  line-height: 1.17;
+}
+
+.footerSelectFlightBox {
+  left: 0px;
+  width: 100%;
+  bottom: 0;
+  filter: drop-shadow(0px 10px 10px black);
+  height: 80px;
+  background: white;
+  padding-top: 18px;
+  justify-content: space-between;
+  display: flex;
+  z-index: 1;
+  position: fixed;
+  align-items: center;
+  flex-direction: column;
+}
+
+.footerSelectFlightBox .nextButton,
+.footerSelectFlightBox .backButton {
+  color: rgba(0, 0, 0, 0.87);
+  border-radius: 10px;
+  text-transform: inherit;
+}
+
+.footerSelectFlightBox .nextButton button,
+.footerSelectFlightBox .backButton button {
+  font-family: JambonoMedium;
+  height: 39px;
+  padding: 0px 15px;
+  min-width: 127px;
+  border: 1px solid #808080;
+  background: #FFFFFF;
+  border-radius: 5px;
+  -webkit-box-shadow: unset;
+  color: #808080;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.footerSelectFlightBox .nextButton button {
+  background: linear-gradient(26.73deg, #F9A51A 13.7%, #FBB612 29.8%, #FFDD00 66.81%);
+  color: #000;
+  border-radius: 10px;
+  border: none;
+}
+
+.footerSelectFlightBox .totalCheckoutFooter {
+  color: #000;
+}
+
+.footerSelectFlightBox .totalCheckoutFooter h5 {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  font-family: KoHo, sans-serif;
+}
+
+.footerSelectFlightBox .totalCheckoutFooter h4 {
+  font-size: 20px;
+  font-family: JambonoMedium;
+  font-weight: 400;
+  line-height: 22px;
+  padding-right: 10px;
+}
+
+.right-total-pay {}
+
+/*# sourceMappingURL=Flightflight.css.map */

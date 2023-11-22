@@ -1,0 +1,88 @@
+.passengerBackground {
+  /* background-image: url('../public/images/img-12.jpg');
+  background-size: cover;
+  min-height: 110vh !important; */
+  background-image: url(../icons/footer-pattern.0df0472f.webp), url(../icons/cloud-bg-3-Desktop.a7535435.webp), url(../icons/cloud-bg-5-Desktop.718029b4.webp);
+  display: flex;
+  overflow: hidden;
+  min-height: 100vh;
+  flex-direction: column;
+  background-size: auto, cover, cover;
+  background-repeat: no-repeat;
+  background-position: right bottom, left top, right bottom;
+  background-attachment: fixed;
+}
+
+.customHeader {
+  color: #000 !important;
+}
+
+
+.footerSelectFlightBox {
+  left: 0px;
+  width: 100%;
+  bottom: 0;
+  filter: drop-shadow(0px 10px 10px black);
+  height: 80px;
+  background: white;
+  padding-top: 18px;
+  justify-content: space-between;
+  display: flex;
+  z-index: 1;
+  position: fixed;
+  align-items: center;
+  flex-direction: column;
+}
+
+.footerSelectFlightBox .nextButton,
+.footerSelectFlightBox .backButton {
+  color: rgba(0, 0, 0, 0.87);
+  border-radius: 10px;
+  text-transform: inherit;
+}
+
+.footerSelectFlightBox .nextButton button,
+.footerSelectFlightBox .backButton button {
+  font-family: JambonoMedium;
+  height: 39px;
+  padding: 0px 15px;
+  min-width: 127px;
+  border: 1px solid #808080;
+  background: #FFFFFF;
+  border-radius: 5px;
+  -webkit-box-shadow: unset;
+  color: #808080;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.footerSelectFlightBox .nextButton button {
+  background: linear-gradient(26.73deg, #F9A51A 13.7%, #FBB612 29.8%, #FFDD00 66.81%);
+  color: #000;
+  border-radius: 10px;
+  border: none;
+}
+
+.footerSelectFlightBox .totalCheckoutFooter {
+  color: #000;
+}
+
+.footerSelectFlightBox .totalCheckoutFooter h5 {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  font-family: KoHo, sans-serif;
+}
+
+.footerSelectFlightBox .totalCheckoutFooter h4 {
+  font-size: 20px;
+  font-family: JambonoMedium;
+  font-weight: 400;
+  line-height: 22px;
+  padding-right: 10px;
+}
+
+/*# sourceMappingURL=Flightflight.css.map */

@@ -1,0 +1,15 @@
+.billingBackground {
+  /* background-image: url('../public/images/img-12.jpg');
+  background-position: center;
+  background-size: cover;
+  min-height: 110vh; */
+  background-image: url(../icons/footer-pattern.0df0472f.webp), url(../icons/cloud-bg-3-Desktop.a7535435.webp), url(../icons/cloud-bg-5-Desktop.718029b4.webp);
+  display: flex;
+  overflow: hidden;
+  min-height: 100vh;
+  flex-direction: column;
+  background-size: auto, cover, cover;
+  background-repeat: no-repeat;
+  background-position: right bottom, left top, right bottom;
+  background-attachment: fixed;
+}

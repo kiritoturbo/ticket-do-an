@@ -1,0 +1,128 @@
+.searchTicket {
+  background-image: url('../../public/images/img-home.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 120vh;
+}
+
+.searchTicketContainer {
+  padding: 70px 72px;
+}
+
+.searchTicketCard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: rgba(255, 255, 255, 0.9);
+  min-height: 100vh;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.formLeft {
+  flex: 2;
+  padding: 30px 35px;
+}
+
+.searchTicketHeading {
+  font-size: 20px;
+}
+
+/* .cardRight {
+  flex: 3.5;
+  background-image: url('../../public/images/searchBooking.jpg');
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+  position: static;
+} */
+
+
+.searchTicketButton {
+  padding: 12px 32px;
+  border-radius: 10px;
+  background-image: linear-gradient(to right, #FAAB18, #FFDD00);
+  font-weight: bold;
+  border: 0px;
+  cursor: pointer;
+}
+
+.result {
+  margin-top: 35px;
+  padding: 30px 35px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.searchError {
+  color: red;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.boxSearchBooking {
+  background-image: url(../../icons/footer-pattern.0df0472f.webp), url(../../icons/cloud-bg-3-Desktop.a7535435.webp), url(../../icons/cloud-bg-5-Desktop.718029b4.webp);
+  display: flex;
+  overflow: hidden;
+  min-height: 100vh;
+  flex-direction: column;
+  background-size: auto, cover, cover;
+  background-repeat: no-repeat;
+  background-position: right bottom, left top, right bottom;
+  background-attachment: fixed;
+}
+
+.boxSearchBooking .container .box-item-container {
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.boxSearchBooking .container .box-item-container .leftBooking {
+  width: 40%;
+  overflow: hidden;
+  padding-top: 20px;
+  padding-left: 25px;
+  padding-right: 25px;
+  font-family: KoHo, sans-serif;
+}
+
+.boxSearchBooking .container .box-item-container .leftBooking .box-input-search {
+  font-family: KoHo, sans-serif;
+}
+
+.boxSearchBooking .container .box-item-container .leftBooking .box-input-search div {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.boxSearchBooking .container .box-item-container .leftBooking .box-input-search input {
+  border: none;
+  height: 40px;
+  padding: 0px 20px;
+  background: #ffffff;
+  box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.09);
+  border-radius: 5px;
+  width: 100%;
+}
+
+.boxSearchBooking .container .box-item-container .leftBooking .box-input-search .button-search {
+  height: 39px;
+  padding: 0px 15px;
+  width: 127px;
+  background: linear-gradient(26.73deg, #F9A51A 13.7%, #FBB612 29.8%, #FFDD00 66.81%);
+  border-radius: 10px;
+  text-transform: inherit;
+  color: #000;
+  font-family: KoHo, sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  font-style: italic;
+}
+
+.boxSearchBooking .container .box-item-container .rightBooking {
+  width: 60%;
+}
+
+/*# sourceMappingURL=SearchBooking.css.map */
