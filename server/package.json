@@ -8,6 +8,9 @@
     "start": "nodemon --inspect index.js",
     "dev": "nodemon --exec babel-node index.js"
   },
+  "engines": {
+    "node": "14.x"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
