@@ -1,7 +1,7 @@
 require("dotenv").config();
-require("@babel/core").transform("code", {
-  presets: ["@babel/preset-env"],
-});
+// require("@babel/core").transform("code", {
+//   presets: ["@babel/preset-env"],
+// });
 const express = require("express");
 const cors = require("cors");
 const key = require("./config/main.config");
