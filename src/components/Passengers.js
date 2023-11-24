@@ -36,11 +36,11 @@ function Passengers(props) {
           </div>
         </div> */}
         <div className="flex container ">
-          <div className="leftContentFlight w-[70%] pr-[30px]">
+          <div className="leftContentFlight w-[70%] sm:pr-[30px]">
             <div className="tabBottomContentLeft mt-[30px]  ">
               <PassengerInput />
               <div
-                className="div"
+                className="div buttonNExt"
                 style={{
                   display: "flex",
                   justifyContent: "space-evenly",

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 import "../bill.css";
+import ScrollToTopButton from "../../ScollToTopButton";
 
 export default function NavbarCar() {
   const [clicked, setClicked] = useState(false);
@@ -10,6 +11,7 @@ export default function NavbarCar() {
   const token = window.localStorage.getItem("token");
   return (
     <div>
+      <ScrollToTopButton />
       <div
         className="hoverBtn"
         data-clicked={clicked}

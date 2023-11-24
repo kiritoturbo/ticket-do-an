@@ -85,4 +85,15 @@
   padding-right: 10px;
 }
 
+@media(max-width:426px) {
+  .buttonNExt {
+    margin-bottom: 20px;
+  }
+
+  .bookingSuccess {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
 /*# sourceMappingURL=Flightflight.css.map */

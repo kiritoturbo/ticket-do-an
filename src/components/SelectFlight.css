@@ -37,3 +37,41 @@
   display: flex;
   justify-content: center;
 }
+
+@media (max-width:426px) {
+  .boxMenuTopSelect {
+    flex-direction: column;
+  }
+
+  .bottomLeftBoxMenu {
+    flex-direction: column;
+  }
+
+  .bottomLeftBoxMenu h3 {
+    font-size: 13px;
+  }
+
+  .topLeftBoxMenu {
+    font-size: 14px;
+  }
+
+  .rightBoxMenuTop {
+    display: none;
+  }
+
+  .contentSelectFlight>div {
+    padding-left: 15px;
+    padding-right: 15px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .resultTabsContent form {
+    overflow: auto;
+  }
+
+  .contentSelectFlight .rightContentFlight,
+  .contentSelectFlight .leftContentFlight {
+    width: 100%;
+  }
+}

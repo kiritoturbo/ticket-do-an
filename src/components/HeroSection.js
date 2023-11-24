@@ -16,6 +16,7 @@ import { Bannerads } from "./Bannerads";
 import { Bannertourhome } from "./Bannertourhome";
 import { Questionhome } from "./Questionhome";
 import { Swiperbanner } from "./Swiperbanner";
+import { Link } from "react-router-dom";
 
 // import Button from "./Button";
 
@@ -24,7 +25,7 @@ function HeroSection() {
     <div>
       <div className="">
         <Banner />
-        <div className="bg-[url('../public/assets/bg-1.png')] min-h-[630px] bg-no-repeat bg-center bg-cover mt-[-90px] mb-[-75px] relative z-[1]">
+        <div className="bg-[url('../public/assets/bg-1.png')] sm:min-h-[630px] bg-no-repeat bg-center bg-cover mt-[-30px] sm:mt-[-90px] mb-[-75px] relative z-[1]">
           <div>
             <div className="slider-flight max-w-[1095px] my-0 mx-auto pt-[100px]">
               <div className="w-full">

@@ -23,6 +23,8 @@ import Login from "./components/car/screens/login";
 import Cars from "./components/car/screens/cars";
 import Bills from "./components/car/screens/bills";
 import NavbarCar from "./components/car/components/navbar";
+import SignupFlight from "./components/pages/signup";
+import LoginFlight from "./components/pages/login";
 
 function App(props) {
   useEffect(() => {
@@ -40,6 +42,8 @@ function App(props) {
                 <NavBar />
                 <Routes>
                   <Route index element={<Home />} />
+                  <Route path="register" element={<SignupFlight />} />
+                  <Route path="login" element={<LoginFlight />} />
                   <Route path="search-booking" element={<SearchTicket />} />
                   <Route path="select-flight" element={<SelectFlight />} />
                   <Route path="passengers" element={<Passengers />} />

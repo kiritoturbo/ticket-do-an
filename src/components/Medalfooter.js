@@ -25,7 +25,25 @@ export const Medalfooter = () => {
           clickable: true,
         }}
         modules={[Autoplay, Navigation, Pagination]}
-        className="container MedalFooter"
+        className="container MedalFooter "
+        breakpoints={{
+          // Breakpoints for different screen sizes
+          320: {
+            slidesPerView: 4, // 1 slide for screens smaller than 320px
+          },
+          480: {
+            slidesPerView: 4, // 2 slides for screens smaller than 480px
+          },
+          640: {
+            slidesPerView: 4, // 3 slides for screens smaller than 640px
+          },
+          768: {
+            slidesPerView: 6, // 4 slides for screens smaller than 768px
+          },
+          1024: {
+            slidesPerView: 6, // 5 slides for screens smaller than 1024px
+          },
+        }}
       >
         <SwiperSlide>
           <div class="MuiBox-Medal">

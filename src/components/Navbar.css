@@ -12,6 +12,10 @@
 }
 
 
+.popupBgFlight {
+  z-index: 130004 !important;
+}
+
 .navbar-container {
   display: flex;
   justify-content: center;

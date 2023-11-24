@@ -13,3 +13,15 @@
   background-position: right bottom, left top, right bottom;
   background-attachment: fixed;
 }
+
+@media(max-width:426px) {
+  .boxService {
+    display: flex;
+    flex-direction: column !important;
+  }
+
+  .ui.grid>[class*="five wide"].column.rightService,
+  .ui.grid>[class*="eleven wide"].column.leftService {
+    width: 100% !important;
+  }
+}

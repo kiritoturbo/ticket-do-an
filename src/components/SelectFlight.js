@@ -91,7 +91,7 @@ function SelectFlight(props) {
           </div>
         </div> */}
           <div className="flex container">
-            <div className="leftContentFlight w-[70%] pr-[30px]">
+            <div className="leftContentFlight w-[70%]  sm:pr-[30px]">
               <div className="tabBottomContentLeft mt-[30px] ">
                 <div className="resultTabsContent">
                   <div className="rounded-md">

@@ -12,8 +12,8 @@ function SelectService(props) {
 
   const renderServices = () => {
     return (
-      <div className="ui container grid" style={{ marginTop: 20 }}>
-        <div className="eleven wide column">
+      <div className="ui container grid boxService" style={{ marginTop: 20 }}>
+        <div className="eleven wide column leftService">
           <ListService />
           <div
             className="div"
@@ -31,7 +31,7 @@ function SelectService(props) {
             </Link>
           </div>
         </div>
-        <div className="five wide column">
+        <div className="five wide column rightService">
           <BookingInFor />
         </div>
       </div>

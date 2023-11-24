@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { format } from "date-fns";
 
 function BookingInFor(props) {
+  console.log(props);
   const renderSelectFlight = () => {
     if (!props.selectedFlight) {
       return null;
@@ -54,8 +55,22 @@ function BookingInFor(props) {
 
     return (
       <div>
-        <div>Khởi hành lúc: {props.selectedReturnFlight.takeOffTime}</div>
-        <div>Hạ cánh lúc: {props.selectedReturnFlight.landingTime}</div>
+        <div>
+          Khởi hành lúc:
+          {/* {props.selectedReturnFlight.takeOffTime} */}
+          {format(
+            new Date(props.selectedReturnFlight.takeOffTime),
+            "dd/MM/yyyy HH:mm"
+          )}
+        </div>
+        <div>
+          Hạ cánh lúc:
+          {/* {props.selectedReturnFlight.landingTime} */}
+          {format(
+            new Date(props.selectedReturnFlight.landingTime),
+            "dd/MM/yyyy HH:mm"
+          )}
+        </div>
         <div>Loại vé: {props.selectedReturnFlight.type}</div>
         <div className="ui content">
           Giá vé:
@@ -248,26 +263,26 @@ function BookingInFor(props) {
                   <div>
                     <div className="topCheckout">
                       <div className="trafficFromTo flex items-center">
-                        <h5>TP.Hồ Chí Minh(SGN)</h5>
+                        <h5>{props.destination.name}</h5>
                         <span>
                           <img
                             src="assets/vietjet.36ac4568.svg"
                             alt="vietjet"
                           />
                         </span>
-                        <h5>Hà Nội (HAN)</h5>
+                        <h5>{props.startFrom.name}</h5>
                       </div>
                       <div className="infoDateFromTo">
-                        <h5>T6, 10/11/2023 | 05:15 - 07:25 | VJ198 | Eco</h5>
+                        {/* <h5>T6, 10/11/2023 | 05:15 - 07:25 | VJ198 | Eco</h5> */}
                       </div>
                     </div>
                     <div className="InputCheckout">
-                      {props.destination.name}
+                      {/* {props.destination.name}
                       <i
                         style={{ marginLeft: 20, marginRight: 20 }}
                         class="fas fa-plane"
                       ></i>
-                      {props.startFrom.name}
+                      {props.startFrom.name} */}
                       {renderSelectedReturnFlight()}
                     </div>
                   </div>

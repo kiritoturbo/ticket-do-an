@@ -26,3 +26,96 @@
   cursor: pointer;
   color: #003580;
 }
+
+@media(max-width:426px) {
+  .headerSearchItem {
+    margin-bottom: 15px;
+  }
+
+  .headerSearchHotel {
+    bottom: -100%;
+    z-index: 1000;
+  }
+
+  .homeContainer {
+    margin-top: 220px !important;
+  }
+
+  .hotelContainer,
+  .headerTitle,
+  .headerDesc,
+  .homeContainer,
+  .headerList,
+  .navbarHotel {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .fp,
+  .featured,
+  .headerSearchHotel {
+    flex-direction: column;
+  }
+
+  .homeTitle,
+  .footerHotel {
+    max-width: 100%;
+  }
+
+  .pList {
+    justify-content: flex-start !important;
+  }
+
+  .pList,
+  .footerHotel .fLists {
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .pListItem {
+    flex: none !important;
+    width: 47%;
+  }
+
+  .pListImg {
+    border-radius: 10px;
+  }
+
+  .fList {
+    width: 40%;
+  }
+
+  .fpItem {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .mailInputContainer {
+    text-align: center;
+  }
+
+  .mailInputContainer button {
+    margin-top: 10px;
+  }
+
+  .listSearch,
+  .listResult {
+    flex: 1 1 !important;
+  }
+
+  .listWrapper {
+    flex-direction: column;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .options {
+    top: 118px;
+  }
+
+  .date {
+    top: 82px !important;
+    left: 50px;
+  }
+}

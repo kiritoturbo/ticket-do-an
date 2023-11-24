@@ -129,7 +129,7 @@ function BillingInfo(props) {
   const renderServices = () => {
     return (
       <div className="ui container grid" style={{ marginTop: 20 }}>
-        <div className="eleven wide column">
+        <div className="eleven wide column leftService">
           <Form onSubmit={props.handleSubmit(onSubmit)}>
             <h4 className="ui dividing text-[20px] font-jambonoMedium mb-3">
               Thông tin thanh toán
@@ -208,7 +208,7 @@ function BillingInfo(props) {
             </div>
           </Form>
         </div>
-        <div className="five wide column">
+        <div className="five wide column rightService">
           <BookingInFor />
         </div>
       </div>

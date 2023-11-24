@@ -55,9 +55,9 @@ function SearchTicket(props) {
       <div className="container">
         <div className="box-item-container w-full flex  mt-[58px] mb-[100px]">
           <div className="leftBooking ">
-            <div className="px-[15px] mb-5 px-[5px]">
+            <div className=" mb-5 px-[5px]">
               <h2 className="title uppercase my-5 font-semibold text-[#333333] text-[20px]">
-                Chuyến bay của tôi{" "}
+                Chuyến bay của tôi
               </h2>
               <h5 className="text-4 font-normal text-[#333333] ">
                 Bạn muốn xem chuyến bay đã đặt, đổi lịch trình bay hay mua thêm
@@ -246,7 +246,6 @@ const SearchTicketForm = reduxForm({
 })(SearchTicket);
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {};
 };
 

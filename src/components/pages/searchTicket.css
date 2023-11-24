@@ -88,6 +88,8 @@
   font-family: KoHo, sans-serif;
 }
 
+.leftBooking h2,
+.leftBooking h5,
 .boxSearchBooking .container .box-item-container .leftBooking .box-input-search {
   font-family: KoHo, sans-serif;
 }
@@ -123,6 +125,24 @@
 
 .boxSearchBooking .container .box-item-container .rightBooking {
   width: 60%;
+}
+
+@media (max-width:426px) {
+  .boxSearchBooking .container .box-item-container {
+    flex-direction: column;
+  }
+
+  .boxSearchBooking .container .box-item-container .rightBooking {
+    display: none;
+  }
+
+  .boxSearchBooking .container .box-item-container .leftBooking {
+    width: 100%;
+  }
+
+  .boxSearchBooking .container .box-item-container {
+    background-color: transparent;
+  }
 }
 
 /*# sourceMappingURL=SearchBooking.css.map */

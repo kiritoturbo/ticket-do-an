@@ -6,7 +6,7 @@ const NavbarHotel = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <div className="navbar relative">
+    <div className="navbar relative navbarHotel">
       <div className="navContainer">
         <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
           <span className="logo">

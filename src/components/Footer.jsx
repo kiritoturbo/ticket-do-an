@@ -12,7 +12,7 @@ function Footer() {
   }, [location]);
   return (
     <div
-      className="boxFooterEnd"
+      className="boxFooterEnd px-[15px] "
       style={{ display: isHomePage ? "block" : "none" }}
     >
       <div className="medalBox">
