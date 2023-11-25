@@ -231,7 +231,7 @@ function NavBar() {
                 )} */}
                 {token != null || token != undefined ? (
                   <>
-                    <span className="mr-4">{user.username}</span>
+                    <span className="mr-4">user</span>
                     <button
                       onClick={() => {
                         setPopup(!popup);
