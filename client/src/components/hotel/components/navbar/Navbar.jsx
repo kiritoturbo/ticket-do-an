@@ -15,7 +15,7 @@ const NavbarHotel = () => {
           </span>
         </Link>
         {user ? (
-          user?.username
+          user
         ) : (
           <div className="navItems">
             <button className="navButton">Register</button>
