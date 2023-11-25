@@ -212,7 +212,7 @@ function NavBar() {
           <div className="hidden md:block">
             <div className="flex justify-end">
               <div className="flex items-center ">
-                {user ? (
+                {/* {user ? (
                   <span className="mr-4">{user.username}</span>
                 ) : (
                   <>
@@ -223,6 +223,50 @@ function NavBar() {
                       </span>
                     </Link>
                     <Link to="/car/login">
+                      <span className="px-[7px]">Đăng nhập</span>
+                    </Link>
+                  </>
+                )} */}
+                {token != null || token != undefined ? (
+                  <>
+                    <span className="mr-4">{user.username}</span>
+                    <button
+                      onClick={() => {
+                        setPopup(!popup);
+                        setClicked(!clicked);
+                      }}
+                      className="cta mr-2"
+                    >
+                      Đăng xuất
+                    </button>
+                    {clicked ? (
+                      <div
+                        className="clickablearea"
+                        onClick={() => setClicked(!clicked)}
+                      />
+                    ) : null}
+                  </>
+                ) : (
+                  <>
+                    <BiSolidUserCircle size={17} />
+                    <Link
+                      to="/register"
+                      onClick={() => {
+                        setClick(!click);
+                        setClicked(!clicked);
+                      }}
+                    >
+                      <span className="px-[7px] border-r-[2px] border-r-white">
+                        Đăng ký
+                      </span>
+                    </Link>
+                    <Link
+                      to="/login"
+                      onClick={() => {
+                        setClick(!click);
+                        setClicked(!clicked);
+                      }}
+                    >
                       <span className="px-[7px]">Đăng nhập</span>
                     </Link>
                   </>
