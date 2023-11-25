@@ -127,6 +127,7 @@ export const signinUser =
         }
       );
       if (msg.data.token != undefined) {
+        window.localStorage.setItem("user", msg.data.userName);
         window.localStorage.setItem("token", msg.data.token);
         dispatch({
           type: "signinSuccess",
