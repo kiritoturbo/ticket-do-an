@@ -22,6 +22,7 @@
     "axios": "^1.6.0",
     "cors": "^2.8.5",
     "date-fns": "^2.30.0",
+    "date-fns-tz": "^2.0.0",
     "dayjs": "^1.11.10",
     "dotenv": "^16.3.1",
     "history": "^5.3.0",
@@ -43,7 +44,6 @@
     "shortid": "^2.2.16",
     "swiper": "^11.0.3",
     "web-vitals": "^2.1.4"
-    
   },
   "scripts": {
     "start": "react-scripts start",
@@ -72,5 +72,5 @@
   "devDependencies": {
     "tailwindcss": "^3.3.5"
   },
-  "proxy":"https://ticket-do-an.vercel.app"
+  "proxy": "https://ticket-do-an.vercel.app"
 }

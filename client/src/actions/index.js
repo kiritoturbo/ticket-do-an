@@ -221,11 +221,11 @@ export const cancelBooking = (id) => async (dispatch) => {
 
 //end bill car
 export const searchFlights = (query) => {
+  console.log(query);
   return async (dispatch) => {
     const response = await Flight.get("/flight/search", {
       params: query,
     });
-    console.log(response);
     dispatch({
       type: SEARCH_FLIGHTS,
       payload: response.data,
@@ -239,7 +239,6 @@ export const searchReturnFlights = (query) => {
     const response = await Flight.get("/flight/search", {
       params: query,
     });
-    console.log(response);
     dispatch({
       type: SEARCH_RETURN_FLIGHTS,
       payload: response.data,

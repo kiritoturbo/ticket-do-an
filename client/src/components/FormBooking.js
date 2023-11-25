@@ -20,6 +20,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import "./pages/Home.css";
+import { format } from "date-fns-tz";
 
 const startFrom = [
   { title: "TP Hồ Chí Minh", value: "HCM" },
@@ -272,11 +273,20 @@ const DateField = (props) => {
   } = props;
 
   const onChange = (date) => {
+    // const formattedDate = format(date, "yyyy-MM-dd HH:mm:ssXXX", {
+    //   timeZone: "Asia/Ho_Chi_Minh",
+    // });
+    console.log(date);
+    console.log(date.toISOString());
+    // console.log(new Date().getTimezoneOffset());//xem múi giơ
     Date.parse(date)
       ? inputProps.onChange(date.toISOString())
       : inputProps.onChange(null);
   };
-
+  const handleBlur = () => {
+    console.log(value);
+    onBlur(value ? new Date(value).toISOString() : null);
+  };
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
@@ -286,7 +296,7 @@ const DateField = (props) => {
         {...others}
         format="dd/MM/yyyy"
         value={value ? new Date(value) : null}
-        onBlur={() => onBlur(value ? new Date(value).toISOString() : null)}
+        onBlur={handleBlur}
         error={error && touched}
         disabled={submitting}
         onChange={onChange}
