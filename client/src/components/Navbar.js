@@ -112,7 +112,7 @@ function NavBar() {
           <div className="flex items-center">
             {token != null || token != undefined ? (
               <>
-                <span className="mr-4">{user.username}</span>
+                {/* <span className="mr-4">{user.username}</span> */}
                 <button
                   onClick={() => {
                     setPopup(!popup);
