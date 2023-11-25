@@ -12,8 +12,8 @@
         "dest": "src/index.js"
     },
     {
-      "src": "/favicon.ico",
-      "dest": "public/favicon.ico"
+      "src": "/(.*)",
+      "dest": "/"
     }
   ]
 }
