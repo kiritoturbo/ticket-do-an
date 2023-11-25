@@ -42,10 +42,11 @@
     "semantic-ui-react": "^2.1.4",
     "shortid": "^2.2.16",
     "swiper": "^11.0.3",
-    "web-vitals": "^2.1.4",
-    "engines": {
-      "node": "14.x"
-    }
+    "web-vitals": "^2.1.4"
+    
+  },
+  "engines": {
+    "node": "18.x"
   },
   "scripts": {
     "start": "react-scripts start",
