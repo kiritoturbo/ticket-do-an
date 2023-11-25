@@ -71,5 +71,6 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.3.5"
-  }
+  },
+  "proxy":"https://ticket-do-an.vercel.app"
 }
