@@ -23,7 +23,8 @@ const app = express();
 require("./db").connectMongoDb(mongoUrl);
 
 var corsOption = {
-  origin: corsOrigin,
+  // origin: corsOrigin,
+  origin: "*",
   optionsSuccessStatus: 200,
 };
 

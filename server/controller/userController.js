@@ -43,7 +43,7 @@ module.exports.loginUser = (req, res) => {
         let signed = jwt.sign({ email: email }, WT_SECRET);
         res.status(200).json({
           token: signed,
-          userName: newUser.email,
+          userName: user.email,
           msg: "Login Successfull",
         });
       } else {
