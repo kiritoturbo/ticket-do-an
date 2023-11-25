@@ -13,7 +13,8 @@ module.exports = {
     NORMAL_USER: 1,
     ADMIN: 1024,
   },
-  corsOrigin: "http://localhost:3000",
+  // corsOrigin: "http://localhost:3000",
+  corsOrigin: "https://truong-flight.vercel.app/",
   email: {
     account: process.env.EMAIL_ACCOUNT,
     pass: process.env.EMAIL_PASS,
