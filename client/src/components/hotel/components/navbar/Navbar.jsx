@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../../context/AuthContext";
 const NavbarHotel = () => {
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
+  const user = window.localStorage.getItem("user");
 
   return (
     <div className="navbar relative navbarHotel">

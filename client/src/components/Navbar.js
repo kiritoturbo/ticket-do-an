@@ -12,7 +12,7 @@ import { Alert } from "@mui/material";
 
 function NavBar() {
   const navigator = useNavigate();
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
   const { setUser } = useContext(AuthContext);
   const location = useLocation();
   const [isHomePage, setIsHomePage] = useState(false);
@@ -65,6 +65,8 @@ function NavBar() {
     : "assets/vj-white-logo.f34b6108.svg";
   const [isPopupAlert, setPopupAlert] = useState(false);
   const token = window.localStorage.getItem("token");
+  const user = window.localStorage.getItem("user");
+  console.log(user);
   return (
     <div>
       <ScrollToTopButton />
@@ -112,7 +114,7 @@ function NavBar() {
           <div className="flex items-center">
             {token != null || token != undefined ? (
               <>
-                <span className="mr-4">{user.username}</span>
+                <span className="mr-4">{user}</span>
                 <button
                   onClick={() => {
                     setPopup(!popup);
