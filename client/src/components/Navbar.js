@@ -87,7 +87,7 @@ function NavBar() {
                   window.localStorage.removeItem("token");
                   navigator("/");
                   setTimeout(() => {
-                    // window.location.reload();
+                    window.location.reload();
                     // <Alert severity="success">Đăng xuất thành công</Alert>;
                     setPopupAlert(!isPopupAlert);
                   }, [2000]);
