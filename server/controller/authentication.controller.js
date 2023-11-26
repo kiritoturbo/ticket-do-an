@@ -45,6 +45,6 @@ module.exports.refreshToken = (req, res) => {
       res.status(403).json({ errors: err, message: "Invalid token" });
     }
   } else {
-    res.status(403).json({ errors:'error', message: "No token provided" });
+    res.status(403).json({ errors: "error", message: "No token provided" });
   }
 };
