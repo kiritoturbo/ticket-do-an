@@ -25,12 +25,15 @@ import Bills from "./components/car/screens/bills";
 import NavbarCar from "./components/car/components/navbar";
 import SignupFlight from "./components/pages/signup";
 import LoginFlight from "./components/pages/login";
+import moment from "moment-timezone";
 
 function App(props) {
+  // Đặt múi giờ cho ứng dụng
+  moment.tz.setDefault("Asia/Ho_Chi_Minh");
+
   useEffect(() => {
     props.fetchAirports();
   }, []);
-
   return (
     <>
       <Router>

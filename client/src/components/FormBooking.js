@@ -21,6 +21,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import "./pages/Home.css";
 import { format } from "date-fns-tz";
+import moment from "moment-timezone";
 
 const startFrom = [
   { title: "TP Hồ Chí Minh", value: "HCM" },
@@ -265,6 +266,46 @@ const renderSelect = ({ input, options, label, meta }) => {
 //   );
 // };
 
+// const DateField = (props) => {
+//   const {
+//     meta: { submitting, error, touched },
+//     input: { onBlur, value, ...inputProps },
+//     ...others
+//   } = props;
+
+//   const onChange = (date) => {
+//     // const formattedDate = format(date, "yyyy-MM-dd HH:mm:ssXXX", {
+//     //   timeZone: "Asia/Ho_Chi_Minh",
+//     // });
+//     console.log(date);
+//     console.log(date.toISOString());
+//     // console.log(new Date().getTimezoneOffset());//xem múi giơ
+//     Date.parse(date)
+//       ? inputProps.onChange(date.toISOString())
+//       : inputProps.onChange(null);
+//   };
+//   const handleBlur = () => {
+//     console.log(value);
+//     onBlur(value ? new Date(value).toISOString() : null);
+//   };
+//   return (
+//     <LocalizationProvider dateAdapter={AdapterDateFns}>
+//       <DatePicker
+//         disablePast
+//         style={{ width: "100%", marginTop: 10, height: "40%" }}
+//         {...inputProps}
+//         {...others}
+//         format="dd/MM/yyyy"
+//         value={value ? new Date(value) : null}
+//         onBlur={handleBlur}
+//         error={error && touched}
+//         disabled={submitting}
+//         onChange={onChange}
+//       />
+//     </LocalizationProvider>
+//   );
+// };
+
 const DateField = (props) => {
   const {
     meta: { submitting, error, touched },
@@ -273,20 +314,14 @@ const DateField = (props) => {
   } = props;
 
   const onChange = (date) => {
-    // const formattedDate = format(date, "yyyy-MM-dd HH:mm:ssXXX", {
-    //   timeZone: "Asia/Ho_Chi_Minh",
-    // });
-    console.log(date);
-    console.log(date.toISOString());
-    // console.log(new Date().getTimezoneOffset());//xem múi giơ
-    Date.parse(date)
-      ? inputProps.onChange(date.toISOString())
-      : inputProps.onChange(null);
+    const formattedDate = moment(date).tz("Asia/Ho_Chi_Minh").toISOString();
+    inputProps.onChange(Date.parse(date) ? formattedDate : null);
   };
+
   const handleBlur = () => {
-    console.log(value);
-    onBlur(value ? new Date(value).toISOString() : null);
+    onBlur(value ? moment(value).tz("Asia/Ho_Chi_Minh").toISOString() : null);
   };
+
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
@@ -304,6 +339,7 @@ const DateField = (props) => {
     </LocalizationProvider>
   );
 };
+
 // const DateField = ({ input, label, meta }) => {
 //   return (
 //     <div className="date-field flex justify-around relative">
