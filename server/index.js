@@ -51,8 +51,8 @@ app.use("/flight", flightRouter);
 app.use("/ticket", ticketRouter);
 
 app.use("/booking", bookingRouter);
-app.use("/api/hotels", hotelsRoute);
-app.use("/api/rooms", roomRouter);
+app.use("/hotels", hotelsRoute);
+app.use("/rooms", roomRouter);
 
 app.use(function (req, res) {
   res.status(404).json({ errors: ["Not found"] });
