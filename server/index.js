@@ -15,13 +15,14 @@ const bookingRouter = require("./route/booking.route");
 const hotelsRoute = require("./route/hotels");
 const roomRouter = require("./route/rooms");
 const userRoutes = require("./route/userRoutes");
-
+const moment = require("moment-timezone");
 const { port, mongoUrl, corsOrigin } = key;
 
 const app = express();
 
 require("./db").connectMongoDb(mongoUrl);
-
+// Đặt múi giờ Hà Nội
+moment.tz.setDefault("Asia/Ho_Chi_Minh");
 var corsOption = {
   // origin: corsOrigin,
   origin: "*",
