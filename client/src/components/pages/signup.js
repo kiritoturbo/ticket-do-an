@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../car/auth.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signupUser } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -11,7 +11,7 @@ export default function SignupFlight() {
   const [showPass, setShowPass] = useState(true);
   const [details, setDetails] = useState("");
   let enable = false;
-
+  const navigation = useNavigate();
   const dispatch = useDispatch();
 
   if (email != "" && password != "") {
@@ -37,7 +37,8 @@ export default function SignupFlight() {
     if (msg != undefined) {
       setDetails(msg);
       setTimeout(() => {
-        window.location.href = "/";
+        // window.location.href = "/";
+        navigation("/");
       }, [2000]);
     } else {
       setDetails(err);

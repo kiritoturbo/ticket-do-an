@@ -19,8 +19,30 @@ function Map() {
   const [distance, setDistance] = useState();
   const [show, setShow] = useState(false);
   let enable = false;
+  const convertToValidLatitude = (lon) => {
+    return ((lon + 180) % 360) - 180;
+  };
 
+  const convertToValidLongitude = (lat) => {
+    return ((lat + 90) % 180) - 90;
+  };
   const dispatch = useDispatch();
+  const getCurrentLocation = (position) => {
+    console.log(position);
+    const receivedLat = position.coords.latitude;
+    const receivedLon = position.coords.longitude;
+
+    // Chuyển đổi giá trị nếu cần thiết
+    const validLat = convertToValidLatitude(receivedLat);
+    const validLon = convertToValidLongitude(receivedLon);
+
+    setLat(validLat);
+    setLon(validLon);
+    loadMap(validLat, validLon);
+  };
+  const errLoc = () => {
+    loadMap(lat, lon);
+  };
 
   useEffect(() => {
     dispatch(removeAllMarkers());
@@ -31,20 +53,15 @@ function Map() {
     }
   }, []);
 
-  const getCurrentLocation = (position) => {
-    setLat(position.coords.latitude);
-    setLon(position.coords.longitude);
-    loadMap(position.coords.latitude, position.coords.longitude);
-  };
-  const errLoc = () => {
-    loadMap(lat, lon);
-  };
-
   const loadMap = (lati, long) => {
+    // Chuyển đổi giá trị nếu cần thiết
+    const validLat = convertToValidLatitude(lati);
+    const validLon = convertToValidLongitude(long);
+
     let map = tt.map({
       key: APIKEY,
       container: mapElem.current,
-      center: [lati, long],
+      center: [validLat, validLon],
       zoom: zoom,
     });
     setMap(map);
@@ -129,11 +146,11 @@ function Map() {
                     style={{ fontSize: 15, color: "rgb(128, 128, 128)" }}
                   ></ion-icon>
                   <div className="details">
-                    <p className="place">{markerDetails[0].result.p1}</p>
-                    <p className="sub">{markerDetails[0].result.p2}</p>
+                    <p className="place">{markerDetails[0]?.result.p1}</p>
+                    <p className="sub">{markerDetails[0]?.result.p2}</p>
                   </div>
                 </div>
-                {markerDetails.length == 2 ? <div className="line" /> : null}
+                {markerDetails?.length == 2 ? <div className="line" /> : null}
                 {markerDetails[1] != undefined ? (
                   <div className="item">
                     <ion-icon
@@ -141,8 +158,8 @@ function Map() {
                       style={{ fontSize: 15, color: "rgb(128, 128, 128)" }}
                     ></ion-icon>
                     <div className="details">
-                      <p className="place">{markerDetails[1].result.p1}</p>
-                      <p className="sub">{markerDetails[1].result.p2}</p>
+                      <p className="place">{markerDetails[1]?.result.p1}</p>
+                      <p className="sub">{markerDetails[1]?.result.p2}</p>
                     </div>
                   </div>
                 ) : null}

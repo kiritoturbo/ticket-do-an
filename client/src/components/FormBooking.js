@@ -16,12 +16,17 @@ import { fetchAirports } from "../actions";
 import { ReactComponent as IconFlight } from "../icons/icon-flight.svg";
 import { Field, reduxForm, formValueSelector } from "redux-form";
 import { searchFlights } from "../actions";
-import { LocalizationProvider } from "@mui/x-date-pickers";
+import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import "./pages/Home.css";
 import { format } from "date-fns-tz";
 import moment from "moment-timezone";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { formatISO } from "date-fns";
 
 const startFrom = [
   { title: "TP Hồ Chí Minh", value: "HCM" },
@@ -34,7 +39,8 @@ const destinations = [
   { title: "Hà Nội", value: "HaNoi" },
   { title: "Kiên Giang", value: "KienGiang" },
 ];
-
+dayjs.extend(utc);
+dayjs.extend(timezone);
 function FormBooking(props) {
   const [openDate, setOpenDate] = useState(false);
   const [openReturnDate, setOpenReturnDate] = useState(false);
@@ -123,8 +129,8 @@ function FormBooking(props) {
               />
             </div>
           </div>
-          <div className="bg-white h-[48px] rounded-xl mb-[11px]">
-            <div className="dateBookingFlight">
+          <div className="bg-white h-[48px] rounded-xl mb-[11px] relative">
+            <div className="dateBookingFlight absolute w-full bottom-0">
               <Field
                 className="w-full h-[70%] dateBookingFlight"
                 name="departureDay"
@@ -151,8 +157,8 @@ function FormBooking(props) {
           </div>
 
           {props.type === "roundtrip" && (
-            <div className="bg-white h-[48px] rounded-xl">
-              <div className="dateBookingFlight">
+            <div className="bg-white h-[48px] rounded-xl relative">
+              <div className="dateBookingFlight absolute w-full bottom-0">
                 <Field
                   className="w-full"
                   name="returnDay"
@@ -314,12 +320,15 @@ const DateField = (props) => {
   } = props;
 
   const onChange = (date) => {
-    const formattedDate = moment(date).tz("Asia/Ho_Chi_Minh").toISOString();
+    console.log(dayjs.tz.guess());
+
+    const formattedDate = moment.tz(date, "Asia/Ho_Chi_Minh").toISOString();
+    console.log(formattedDate);
     inputProps.onChange(Date.parse(date) ? formattedDate : null);
   };
 
   const handleBlur = () => {
-    onBlur(value ? moment(value).tz("Asia/Ho_Chi_Minh").toISOString() : null);
+    onBlur(value ? moment().tz(value, "Asia/Ho_Chi_Minh").toISOString() : null);
   };
 
   return (
@@ -329,6 +338,7 @@ const DateField = (props) => {
         style={{ width: "100%", marginTop: 10, height: "40%" }}
         {...inputProps}
         {...others}
+        slotProps={{ textField: { size: "small" } }}
         format="dd/MM/yyyy"
         value={value ? new Date(value) : null}
         onBlur={handleBlur}

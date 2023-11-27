@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../car/auth.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signinUser } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -11,6 +11,7 @@ export default function LoginFlight() {
   const [showPass, setShowPass] = useState(true);
   const [details, setDetails] = useState("");
   let enable = false;
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const { msg, err } = useSelector((state) => state.authReducer);
@@ -33,6 +34,7 @@ export default function LoginFlight() {
       setDetails(msg);
       setTimeout(() => {
         window.location.href = "/";
+        // navigate("/");
       }, [2000]);
     } else {
       setDetails(err);

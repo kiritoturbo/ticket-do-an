@@ -37,7 +37,9 @@ let totalTime;
 let pricePerKm = 4;
 
 let serverUri = process.env.REACT_APP_SERVER_URI;
-let token = window.localStorage.getItem("token");
+// let token = window.localStorage.getItem("token");
+
+const token = window.localStorage.getItem("token");
 console.log("token" + token);
 
 export const getAllMarkers = (marker, result, type) => async (dispatch) => {
@@ -126,8 +128,11 @@ export const signinUser =
           },
         }
       );
+      const username = msg.data.userName;
+      const usname = username.split("@")[0];
+      console.log(usname);
       if (msg.data.token != undefined) {
-        window.localStorage.setItem("user", msg.data.userName);
+        window.localStorage.setItem("user", usname);
         window.localStorage.setItem("token", msg.data.token);
         dispatch({
           type: "signinSuccess",

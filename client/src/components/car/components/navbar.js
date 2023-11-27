@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
 import "../bill.css";
 import ScrollToTopButton from "../../ScollToTopButton";
 
 export default function NavbarCar() {
+  const navigator = useNavigate();
   const [clicked, setClicked] = useState(false);
   const [popup, setPopup] = useState(false);
 
@@ -100,6 +101,8 @@ export default function NavbarCar() {
                 onClick={() => {
                   setPopup(!popup);
                   window.localStorage.removeItem("token");
+                  window.localStorage.removeItem("user");
+                  navigator("/");
                   setTimeout(() => {
                     window.location.reload();
                   }, [2000]);

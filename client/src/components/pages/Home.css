@@ -798,10 +798,10 @@
   border: none;
 }
 
-.dateBookingFlight .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root {
+/* .dateBookingFlight .MuiFormLabel-colorPrimary {
 
   line-height: 2.4375em;
-}
+} */
 
 .form-search-home label+.css-m5hdmq-MuiInputBase-root-MuiInput-root-MuiSelect-root {
   width: 87%;

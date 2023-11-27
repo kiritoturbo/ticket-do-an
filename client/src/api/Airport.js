@@ -4,5 +4,5 @@ import axios from "axios";
 //   baseURL: 'http://localhost:2020',
 // })
 export default axios.create({
-  baseURL: "https://ticket-do-an.vercel.app",
+  baseURL: process.env.REACT_APP_SERVER_URI,
 });

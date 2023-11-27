@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../bill.css";
 import Notification from "../components/notification";
 import { cancelBooking, getBill } from "../../../actions";
 
 export default function Bills() {
   const [popup, setPopup] = useState(false);
-
+  const navigatior = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getBill());
@@ -115,7 +115,8 @@ export default function Bills() {
                       dispatch(cancelBooking(bill._id));
                       setPopup(!popup);
                       setTimeout(() => {
-                        window.location.href = "/";
+                        // window.location.href = "/";
+                        navigatior("/car/map-address");
                       }, [4000]);
                     }}
                     className="btn"

@@ -14,14 +14,18 @@ const NavbarHotel = () => {
             <img src="assets/vj-white-logo.f34b6108.svg" alt="" />
           </span>
         </Link>
-        {user ? (
-          user
-        ) : (
-          <div className="navItems">
-            <button className="navButton">Register</button>
-            <button className="navButton">Login</button>
+
+        {!user && (
+          <div className="navItems  flex items-center text-3">
+            <Link to="/register">
+              <button className="navButton text-white">Register</button>
+            </Link>
+            <Link to="/login">
+              <button className="navButton text-white">Login</button>
+            </Link>
           </div>
         )}
+        {user && user !== "" && user !== null && user}
       </div>
     </div>
   );

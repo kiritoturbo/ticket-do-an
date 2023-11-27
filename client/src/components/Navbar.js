@@ -87,6 +87,7 @@ function NavBar() {
                   handleClick();
                   setPopup(!popup);
                   window.localStorage.removeItem("token");
+                  window.localStorage.removeItem("user");
                   navigator("/");
                   setTimeout(() => {
                     window.location.reload();
@@ -114,7 +115,7 @@ function NavBar() {
           <div className="flex items-center">
             {token != null || token != undefined ? (
               <>
-                <span className="mr-4">user</span>
+                <span className="mr-4">{user}</span>
                 <button
                   onClick={() => {
                     setPopup(!popup);
@@ -231,7 +232,7 @@ function NavBar() {
                 )} */}
                 {token != null || token != undefined ? (
                   <>
-                    <span className="mr-4">user</span>
+                    <span className="mr-4">{user}</span>
                     <button
                       onClick={() => {
                         setPopup(!popup);

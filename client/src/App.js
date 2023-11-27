@@ -86,7 +86,7 @@ const StackContainer = () => {
       <Route exact path="map-address" element={<Map />} />
       <Route
         path="register"
-        element={!notToken ? <Navigate to="/cabs" /> : <Signup />}
+        element={notToken ? <Navigate to="/car/cabs" /> : <SignupFlight />}
       />
       <Route
         path="cabs"
@@ -98,7 +98,7 @@ const StackContainer = () => {
       />
       <Route
         path="login"
-        element={!notToken ? <Navigate to="/car/cabs" /> : <Login />}
+        element={notToken ? <Navigate to="/car/cabs" /> : <LoginFlight />}
       />
     </Routes>
   );
