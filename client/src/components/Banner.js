@@ -21,21 +21,21 @@ export const Banner = () => {
         <div className="h-[100%] flex items-center justify-end container m-auto">
           <div className="right-0 sm:max-w-[380px] mt-0 ">
             <div className="flex w-full items-stretch justify-center font-bold font-[JambonoMedium]">
-              <button className="h-[52px] bg-gradient-to-r from-[#d91a21cc] to-[#6f0000cc] text-white sm:w-[53%] rounded-t-[5px] py-[6px] px-2">
+              <button className="sm:h-[52px] bg-gradient-to-r from-[#d91a21cc] to-[#6f0000cc] text-white sm:w-[53%] rounded-t-[5px] py-[6px] px-2">
                 <span className="">
                   <a href="/" className="text-[14px] w-full block">
                     Mua hành lý, suất ăn, chọn chỗ ngồi và hơn thế nữa...
                   </a>
                 </span>
               </button>
-              <button className="min-w-[102px] h-[52px] bg-gradient-to-r from-[#FFDD00] to-[#E99F24] text-black w-[64px] rounded-t-[5px]">
+              <button className="min-w-[102px] sm:h-[52px] bg-gradient-to-r from-[#FFDD00] to-[#E99F24] text-black w-[64px] rounded-t-[5px]">
                 <span>
                   <a href="/" className="text-[14px]">
                     Đổi thưởng & Mua SkyPoint
                   </a>
                 </span>
               </button>
-              <button className="h-[52px] bg-gradient-to-r from-[#d91a21cc] to-[#6f0000cc] text-white w-[20%] rounded-t-[5px]">
+              <button className="sm:h-[52px] bg-gradient-to-r from-[#d91a21cc] to-[#6f0000cc] text-white w-[20%] rounded-t-[5px]">
                 <span>
                   <a href="/" className="text-[14px]">
                     Gửi hàng nhanh
