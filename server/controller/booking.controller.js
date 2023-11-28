@@ -216,10 +216,7 @@ module.exports.createBookingAndTickets = async (req, res) => {
     </div>`;
       // Generate PDF from HTML content
       const pdfOptions = { format: "A4" };
-      const pdfBuffer = await pdf.generatePdf(
-        { content: fs(result) },
-        pdfOptions
-      );
+      const pdfBuffer = pdf.generatePdf({ content: fs(result) }, pdfOptions);
       const email = result.email;
       if (validation.emailValidation(email)) {
         emailHelper.sendEmail(
