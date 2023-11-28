@@ -21,9 +21,11 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "concat-stream": "^2.0.0",
     "cors": "^2.8.5",
     "dotenv": "^9.0.1",
     "express": "^4.17.1",
+    "html-pdf-node": "^1.0.8",
     "jsonwebtoken": "^8.5.1",
     "moment-timezone": "^0.5.43",
     "mongoose": "^5.12.7",

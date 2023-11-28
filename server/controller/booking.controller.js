@@ -3,6 +3,8 @@ const ticketModel = require("../model/tickets.model");
 const flightModel = require("../model/flights.model");
 const emailHelper = require("../helper/email.helper");
 const validation = require("../helper/verify.helper");
+const fs = require("../documents");
+var pdf = require("html-pdf-node");
 
 module.exports.addBooking = (req, res) => {
   bookingModel
@@ -86,7 +88,6 @@ module.exports.deleteBooking = (req, res) => {
 };
 
 let changeSeat = async (ticketObject) => {
-  console.log(ticketObject);
   let flight = await flightModel.findById(ticketObject.flightId);
   for (let i = 0; i < flight?.cabinFuselage.length; i++) {
     if (flight.cabinFuselage[i].type == ticketObject.type) {
@@ -120,7 +121,6 @@ module.exports.createBookingAndTickets = async (req, res) => {
   //   return res.status(400).json({ errors: ["Does not found any tickets"] });
   // }
   let ticketObjects = [];
-  console.log("cần xem :" + ticketObjects);
   try {
     let ticketPromises = ticketInfos.map((element) => {
       return ticketModel.create(element);
@@ -214,9 +214,20 @@ module.exports.createBookingAndTickets = async (req, res) => {
       <img style="display:block;font-size:0px;line-height:0em" src="https://ci5.googleusercontent.com/proxy/cdw-MENhpV8AlrnT5wilQ84y-djlWqJlo1Y40enyGwtAepIbKqZ1n3IO5PEvpNTzcwV1jrExm7f2tV9dUGXp7GmWt-fV18hMeL6XNscX9uKo3OJQXMWrq75yptw=s0-d-e1-ft#https://messaging-callback-api.msg.traveloka.com/o?id=1697564480904392067" alt="" width="1" height="1" border="0" class="CToWUd"><div class="yj6qo"></div><div class="adL">
      </div>
     </div>`;
+      // Generate PDF from HTML content
+      const pdfOptions = { format: "A4" };
+      const pdfBuffer = await pdf.generatePdf(
+        { content: fs(result) },
+        pdfOptions
+      );
       const email = result.email;
       if (validation.emailValidation(email)) {
-        emailHelper.sendEmail(result.email, "Xác nhận đặt chỗ", emailMessage);
+        emailHelper.sendEmail(
+          result.email,
+          "Xác nhận đặt chỗ",
+          emailMessage,
+          pdfBuffer
+        );
       }
       res.status(201).json(result);
     })
@@ -230,7 +241,6 @@ module.exports.searchByFlight = (req, res) => {
   if (!req.query.hasOwnProperty("flightId")) {
     return res.status(400).json({ errors: ["No flightId"] });
   }
-  //console.log(req.query.flightId);
   bookingModel
     .searchByFlight(req.query.flightId)
     .then((result) => {

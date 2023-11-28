@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 const config = require("../config/main.config");
 
-module.exports.sendEmail = async (receiver, subject, body) => {
+module.exports.sendEmail = async (receiver, subject, body, pdfBuffer) => {
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
@@ -21,6 +21,14 @@ module.exports.sendEmail = async (receiver, subject, body) => {
     subject: subject, // Subject line
     text: "Đây là nội dung email kiểu văn bản.", // plain text body
     html: body, // html body
+    attachments: [
+      {
+        filename: "Ve-dat.pdf",
+        content: pdfBuffer,
+        encoding: "base64",
+        contentType: "application/pdf",
+      },
+    ],
   });
   console.log("Message sent: %s", info.messageId);
   // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
