@@ -219,8 +219,12 @@ router.get("/vnpay_return", function (req, res, next) {
 
   vnp_Params = sortObject(vnp_Params);
 
-  let tmnCode = config.get("vnp_TmnCode");
-  let secretKey = config.get("vnp_HashSecret");
+  // let tmnCode = config.get("vnp_TmnCode");
+  // let secretKey = config.get("vnp_HashSecret");
+  let tmnCode = process.env.vnp_TmnCode;
+  let secretKey = process.env.vnp_HashSecret;
+  let vnpUrl = process.env.vnp_Url;
+  let returnUrl = process.env.vnp_Api;
 
   let querystring = require("qs");
   let signData = querystring.stringify(vnp_Params, { encode: false });
