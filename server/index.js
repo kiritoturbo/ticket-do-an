@@ -14,6 +14,7 @@ const ticketRouter = require("./route/ticket.route");
 const bookingRouter = require("./route/booking.route");
 const hotelsRoute = require("./route/hotels");
 const roomRouter = require("./route/rooms");
+const vnpay = require("./route/vnpay.router");
 const userRoutes = require("./route/userRoutes");
 const moment = require("moment-timezone");
 const { port, mongoUrl, corsOrigin } = key;
@@ -53,6 +54,7 @@ app.use("/ticket", ticketRouter);
 app.use("/booking", bookingRouter);
 app.use("/hotels", hotelsRoute);
 app.use("/rooms", roomRouter);
+app.use("/order", vnpay);
 
 app.use(function (req, res) {
   res.status(404).json({ errors: ["Not found"] });
