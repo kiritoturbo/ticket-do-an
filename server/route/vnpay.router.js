@@ -78,7 +78,7 @@ router.post("/create_payment_url", async (req, res, next) => {
   let tmnCode = process.env.vnp_TmnCode;
   let secretKey = process.env.vnp_HashSecret;
   let vnpUrl = process.env.vnp_Url;
-  let returnUrl = process.env.vnp_Api;
+  let returnUrl = process.env.vnp_ReturnUrl;
   let orderId = moment(date).format("DDHHmmss");
 
   let amount =
@@ -224,7 +224,7 @@ router.get("/vnpay_return", function (req, res, next) {
   let tmnCode = process.env.vnp_TmnCode;
   let secretKey = process.env.vnp_HashSecret;
   let vnpUrl = process.env.vnp_Url;
-  let returnUrl = process.env.vnp_Api;
+  let returnUrl = process.env.vnp_ReturnUrl;
 
   let querystring = require("qs");
   let signData = querystring.stringify(vnp_Params, { encode: false });
