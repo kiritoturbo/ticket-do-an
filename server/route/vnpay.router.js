@@ -1,6 +1,5 @@
 const express = require("express");
-const controller = require("../controller/airport.controller");
-const config = require("../config/default.json");
+const config = require("config");
 const verifyAuth = require("../middleware/authorization/auth.validation.middleware");
 const router = express.Router();
 const bookingModel = require("../model/bookings.model");
