@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import BookingInFor from "./BookingInFor";
 import { connect } from "react-redux";
@@ -7,8 +7,8 @@ import { Form, Dropdown, Input } from "semantic-ui-react";
 import { Field, reduxForm } from "redux-form";
 import { createTicket } from "../actions";
 import Booking from "../api/Booking";
-import history from "../history";
 import "./billingInfo.css";
+import PaymentForm from "./paymentVnpay";
 
 const cardOptions = [
   { value: "Visa", text: "Visa" },
@@ -40,8 +40,13 @@ const renderTextField = ({ input, placeholder, label, meta }) => {
     </Form.Field>
   );
 };
-
 function BillingInfo(props) {
+  const [selectedPaymentMethod, setSelectedPaymentMethod] =
+    useState("creditCard");
+
+  const handlePaymentMethodChange = (method) => {
+    setSelectedPaymentMethod(method);
+  };
   const navigate = useNavigate();
 
   const onSubmit = (formValues) => {
@@ -74,7 +79,7 @@ function BillingInfo(props) {
       })
         .then((res) => {
           props.createTicket(res.data);
-          history.push("/booking-success");
+          navigate("/booking-success");
         })
         .catch((err) => {
           console.log(err);
@@ -130,83 +135,119 @@ function BillingInfo(props) {
     return (
       <div className="ui container grid" style={{ marginTop: 20 }}>
         <div className="eleven wide column leftService">
-          <Form onSubmit={props.handleSubmit(onSubmit)}>
-            <h4 className="ui dividing text-[20px] font-jambonoMedium mb-3">
-              Thông tin thanh toán
-            </h4>
-            <div className="field">
-              <label>Loại thẻ</label>
-              <Field name="cardType" component={renderSelectField} />
+          <div className="field">
+            <label className=" text-[20px] font-jambonoMedium mb-3">
+              Phương thức thanh toán
+            </label>
+            <div>
+              <label className="text-4 font-semibold">
+                <input
+                  type="radio"
+                  className="mr-2"
+                  value="creditCard"
+                  checked={selectedPaymentMethod === "creditCard"}
+                  onChange={() => handlePaymentMethodChange("creditCard")}
+                />
+                Thẻ tín dụng
+              </label>
             </div>
-            <div className="fields">
-              <div className="seven wide field">
-                <label>Số thẻ</label>
+            <div className="mb-4">
+              <label className="text-4 font-semibold">
                 <input
-                  type="text"
-                  name="card[number]"
-                  maxlength="16"
-                  placeholder="Card #"
+                  type="radio"
+                  className="mr-2"
+                  value="vnPay"
+                  checked={selectedPaymentMethod === "vnPay"}
+                  onChange={() => handlePaymentMethodChange("vnPay")}
                 />
+                VnPay
+              </label>
+            </div>
+          </div>
+          {selectedPaymentMethod === "creditCard" ? (
+            <Form onSubmit={props.handleSubmit(onSubmit)}>
+              <h4 className="ui dividing text-[20px] font-jambonoMedium mb-3">
+                Thông tin thanh toán
+              </h4>
+              <div className="field">
+                <label>Loại thẻ</label>
+                <Field name="cardType" component={renderSelectField} />
               </div>
-              <div className="three wide field">
-                <label>CVC</label>
-                <input
-                  type="text"
-                  name="card[cvc]"
-                  maxlength="3"
-                  placeholder="CVC"
-                />
-              </div>
-              <div className="six wide field">
-                <label>Hạn thẻ</label>
-                <div className="two fields">
-                  <div className="field">
-                    <select
-                      className="ui fluid search dropdown"
-                      name="card[expire-month]"
-                    >
-                      <option value="">Month</option>
-                      <option value="1">January</option>
-                      <option value="2">February</option>
-                      <option value="3">March</option>
-                      <option value="4">April</option>
-                      <option value="5">May</option>
-                      <option value="6">June</option>
-                      <option value="7">July</option>
-                      <option value="8">August</option>
-                      <option value="9">September</option>
-                      <option value="10">October</option>
-                      <option value="11">November</option>
-                      <option value="12">December</option>
-                    </select>
-                  </div>
-                  <div className="field">
-                    <input
-                      type="text"
-                      name="card[expire-year]"
-                      maxlength="4"
-                      placeholder="Year"
-                    />
+              <div className="fields">
+                <div className="seven wide field">
+                  <label>Số thẻ</label>
+                  <input
+                    required
+                    type="text"
+                    name="card[number]"
+                    maxlength="16"
+                    placeholder="Card #"
+                  />
+                </div>
+                <div className="three wide field">
+                  <label>CVC</label>
+                  <input
+                    required
+                    type="text"
+                    name="card[cvc]"
+                    maxlength="3"
+                    placeholder="CVC"
+                  />
+                </div>
+                <div className="six wide field">
+                  <label>Hạn thẻ</label>
+                  <div className="two fields">
+                    <div className="field">
+                      <select
+                        className="ui fluid search dropdown"
+                        name="card[expire-month]"
+                      >
+                        <option value="">Month</option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                      </select>
+                    </div>
+                    <div className="field">
+                      <input
+                        required
+                        type="text"
+                        name="card[expire-year]"
+                        maxlength="4"
+                        placeholder="Year"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div
-              className="div"
-              style={{
-                display: "flex",
-                justifyContent: "space-evenly",
-                marginTop: "35px",
-              }}
-            >
-              <Link to="/select-service" className="ui button">
-                Quay lại
-              </Link>
-              <button type="submit" className="ui button primary">
-                Đặt vé
-              </button>
-            </div>
-          </Form>
+              <div
+                className="div"
+                style={{
+                  display: "flex",
+                  justifyContent: "space-evenly",
+                  marginTop: "35px",
+                }}
+              >
+                <Link to="/select-service" className="ui button">
+                  Quay lại
+                </Link>
+                <button type="submit" className="ui button primary">
+                  Đặt vé
+                </button>
+              </div>
+            </Form>
+          ) : (
+            <PaymentForm />
+          )}
         </div>
         <div className="five wide column rightService">
           <BookingInFor />

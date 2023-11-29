@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "ticket-truong-client"
-  }
+    "default": "ticket-truong-client",
+    "y": "ticket-truong-client"
+  },
+  "targets": {},
+  "etags": {}
 }

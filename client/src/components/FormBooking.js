@@ -312,6 +312,107 @@ const renderSelect = ({ input, options, label, meta }) => {
 //   );
 // };
 
+// const DateField = (props) => {
+//   const {
+//     meta: { submitting, error, touched },
+//     input: { onBlur, value, ...inputProps },
+//     ...others
+//   } = props;
+
+//   const onChange = (date) => {
+//     console.log(dayjs.tz.guess());
+
+//     const formattedDate = moment.tz(date, "Asia/Ho_Chi_Minh").toISOString();
+//     console.log(formattedDate);
+//     inputProps.onChange(Date.parse(date) ? formattedDate : null);
+//   };
+
+//   const handleBlur = () => {
+//     onBlur(value ? moment().tz(value, "Asia/Ho_Chi_Minh").toISOString() : null);
+//   };
+
+//   return (
+//     <LocalizationProvider dateAdapter={AdapterDateFns}>
+//       <DatePicker
+//         disablePast
+//         style={{ width: "100%", marginTop: 10, height: "40%" }}
+//         {...inputProps}
+//         {...others}
+//         slotProps={{ textField: { size: "small" } }}
+//         format="dd/MM/yyyy"
+//         value={value ? new Date(value) : null}
+//         onBlur={handleBlur}
+//         error={error && touched}
+//         disabled={submitting}
+//         onChange={onChange}
+//       />
+//     </LocalizationProvider>
+//   );
+// };
+
+//vs host bangkok
+// const DateField = (props) => {
+//   const {
+//     meta: { submitting, error, touched },
+//     input: { onBlur, value, ...inputProps },
+//     ...others
+//   } = props;
+
+//   const onChange = (date) => {
+//     console.log(date);
+//     console.log(new Intl.DateTimeFormat().resolvedOptions().timeZone);
+
+//     // Tạo đối tượng Date từ chuỗi thời gian
+//     let dateObject = new Date(date);
+//     // Chuyển đổi thành múi giờ Bangkok
+//     dateObject.setMinutes(
+//       dateObject.getMinutes() + dateObject.getTimezoneOffset() + 420
+//     ); // UTC+7 là 420 phút
+
+//     // Chuyển đổi thành chuỗi ISOString
+//     const formattedDate = dateObject.toLocaleString("sv-SE", {
+//       timeZone: "Asia/Bangkok",
+//     });
+
+//     console.log(formattedDate);
+//     inputProps.onChange(Date.parse(date) ? formattedDate : null);
+//   };
+
+//   const handleBlur = () => {
+//     // Tạo đối tượng Date từ giá trị hiện tại
+//     let dateObject = new Date(value);
+//     // Chuyển đổi thành múi giờ Bangkok
+//     dateObject.setMinutes(
+//       dateObject.getMinutes() + dateObject.getTimezoneOffset() + 420
+//     ); // UTC+7 là 420 phút
+
+//     // Chuyển đổi thành chuỗi ISOString
+//     onBlur(
+//       value
+//         ? dateObject.toLocaleString("sv-SE", { timeZone: "Asia/Bangkok" })
+//         : null
+//     );
+//   };
+
+//   return (
+//     <LocalizationProvider dateAdapter={AdapterDateFns}>
+//       <DatePicker
+//         disablePast
+//         style={{ width: "100%", marginTop: 10, height: "40%" }}
+//         {...inputProps}
+//         {...others}
+//         slotProps={{ textField: { size: "small" } }}
+//         format="dd/MM/yyyy"
+//         value={value ? new Date(value) : null}
+//         onBlur={handleBlur}
+//         error={error && touched}
+//         disabled={submitting}
+//         onChange={onChange}
+//       />
+//     </LocalizationProvider>
+//   );
+// };
+// đúng với tất cả trường hợp
 const DateField = (props) => {
   const {
     meta: { submitting, error, touched },
@@ -320,15 +421,32 @@ const DateField = (props) => {
   } = props;
 
   const onChange = (date) => {
-    console.log(dayjs.tz.guess());
+    console.log(date);
 
-    const formattedDate = moment.tz(date, "Asia/Ho_Chi_Minh").toISOString();
+    // Tạo đối tượng Date từ chuỗi thời gian
+    let dateObject = new Date(date);
+
+    // Chuyển đổi thành chuỗi ISOString với múi giờ hiện tại
+    const formattedDate = dateObject.toLocaleString("sv-SE", {
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    });
+
     console.log(formattedDate);
     inputProps.onChange(Date.parse(date) ? formattedDate : null);
   };
 
   const handleBlur = () => {
-    onBlur(value ? moment().tz(value, "Asia/Ho_Chi_Minh").toISOString() : null);
+    // Tạo đối tượng Date từ giá trị hiện tại
+    let dateObject = new Date(value);
+
+    // Chuyển đổi thành chuỗi ISOString với múi giờ hiện tại
+    onBlur(
+      value
+        ? dateObject.toLocaleString("sv-SE", {
+            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+          })
+        : null
+    );
   };
 
   return (
@@ -349,7 +467,6 @@ const DateField = (props) => {
     </LocalizationProvider>
   );
 };
-
 // const DateField = ({ input, label, meta }) => {
 //   return (
 //     <div className="date-field flex justify-around relative">

@@ -14,7 +14,7 @@ function ListFlight(props) {
     flight.totalPrice =
       parseInt(flight.price.value) + parseInt(flight.price.tax);
     props.selectFlight(flight);
-    console.log(value);
+    console.log(flight);
   };
 
   const onSelectReturnFlight = (flight, value) => {
@@ -300,6 +300,7 @@ function ListFlight(props) {
                 <p class="px-[33px] py-[25px]" customcolor="grey" weight="Bold">
                   <FormControlLabel
                     value="SkyBOSS"
+                    className="hidden"
                     checked={
                       props.selectedReturnFlight &&
                       flight.flightId === props.selectedReturnFlight.flightId &&

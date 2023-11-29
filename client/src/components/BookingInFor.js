@@ -204,9 +204,9 @@ function BookingInFor(props) {
               <span className="text-[#EC2029] font-bold text-[18px]">
                 Chuyến đi
               </span>
-              {/* <span className="text-[#EC2029] font-bold text-[18px]">
-                1.923.600 VND
-              </span> */}
+              <span className="text-[#EC2029] font-bold text-[18px]">
+                {props.selectedFlight?.totalPrice} VND
+              </span>
             </div>
           </div>
           <div className="boxCheckoutContent">
@@ -253,9 +253,9 @@ function BookingInFor(props) {
                   <span className="text-[#EC2029] font-bold text-[18px]">
                     Chuyến về
                   </span>
-                  {/* <span className="text-[#EC2029] font-bold text-[18px]">
-                    1.923.600 VND
-                  </span> */}
+                  <span className="text-[#EC2029] font-bold text-[18px]">
+                    {props.selectedReturnFlight?.totalPrice} VND
+                  </span>
                 </div>
               </div>
               <div className="boxCheckoutContent">

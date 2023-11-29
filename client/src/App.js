@@ -26,10 +26,11 @@ import NavbarCar from "./components/car/components/navbar";
 import SignupFlight from "./components/pages/signup";
 import LoginFlight from "./components/pages/login";
 import moment from "moment-timezone";
+import VnpaySuccess from "./components/vnpaySuccess";
 
 function App(props) {
   // Đặt múi giờ cho ứng dụng
-  moment.tz.setDefault("Asia/Ho_Chi_Minh");
+  // moment.tz.setDefault("Asia/Ho_Chi_Minh");
 
   useEffect(() => {
     props.fetchAirports();
@@ -53,6 +54,7 @@ function App(props) {
                   <Route path="select-service" element={<SelectService />} />
                   <Route path="billing-info" element={<BillingInfo />} />
                   <Route path="booking-success" element={<BookingSuccess />} />
+                  <Route path="ordervnpay-success" element={<VnpaySuccess />} />
                 </Routes>
                 <Footer />
               </>
