@@ -57,12 +57,12 @@ app.use("/rooms", roomRouter);
 app.use("/order", vnpay);
 
 app.use(function (req, res) {
-  res.status(404).json({ errors: ["Not found"] });
+  res.status(404).json({ errors: ["Không tìm thấy route"] });
 });
 
 app.use(function (err, req, res, next) {
   console.error(err.stack);
-  res.status(500).json({ errors: ["Internal Server Error"] });
+  res.status(500).json({ errors: ["Lỗi máy chủ nội bộ"] });
 });
 
 app.listen(port, () => {
