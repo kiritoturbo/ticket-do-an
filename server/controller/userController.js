@@ -9,7 +9,6 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 let WT_SECRET = process.env.WT_SECRET;
-console.log(WT_SECRET);
 
 module.exports.signUpUser = (req, res) => {
   const { email, password } = req.body;

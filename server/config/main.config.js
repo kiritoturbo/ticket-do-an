@@ -3,7 +3,7 @@ module.exports = {
   mongoUrl: process.env.MONGOURL,
   jwtSecret: process.env.JWTSECRET || "placeholder",
   refreshSecret: process.env.REFRESHSECRET || "refreshholder",
-  tokenLife: process.env.TOKENLIFE || 300,
+  tokenLife: process.env.TOKENLIFE || 3600,
   refreshLife: process.env.REFRESHLIFE || 86400,
   permission: {
     NORMAL_USER: 1,

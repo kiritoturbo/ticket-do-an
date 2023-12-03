@@ -16,6 +16,8 @@ const hotelsRoute = require("./route/hotels");
 const roomRouter = require("./route/rooms");
 const vnpay = require("./route/vnpay.router");
 const userRoutes = require("./route/userRoutes");
+const blogRoute = require("./route/blogpost.route");
+const bannerRoute = require("./route/banner.route");
 const moment = require("moment-timezone");
 const { port, mongoUrl, corsOrigin } = key;
 
@@ -29,8 +31,10 @@ var corsOption = {
   origin: "*",
   optionsSuccessStatus: 200,
 };
+const bodyParser = require("body-parser");
+app.use(bodyParser.json({ limit: "10mb" })); // Thay đổi giới hạn theo nhu cầu của bạn
 
-app.use(express.json());
+app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOption));
 
@@ -55,6 +59,9 @@ app.use("/booking", bookingRouter);
 app.use("/hotels", hotelsRoute);
 app.use("/rooms", roomRouter);
 app.use("/order", vnpay);
+
+app.use("/blog", blogRoute);
+app.use("/banner", bannerRoute);
 
 app.use(function (req, res) {
   res.status(404).json({ errors: ["Không tìm thấy route"] });

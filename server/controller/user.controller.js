@@ -21,7 +21,7 @@ module.exports.userRegistaion = async (req, res) => {
     return;
   }
   if (await userModel.isEmailExisted(req.body.email)) {
-    res.status(400).json({ error: "email is already exist" });
+    res.status(400).json({ err: "email is already exist" });
     return;
   }
   let salt = crypto.randomBytes(16).toString("base64");
@@ -34,6 +34,7 @@ module.exports.userRegistaion = async (req, res) => {
   let user = await userModel.createUser(req.body);
   user = user.toJSON();
   delete user.hashedPassword;
+  user.msg = "Registration Success";
   res.status(201).json(user);
 };
 
@@ -116,6 +117,6 @@ module.exports.logout = async (req, res) => {
     res.status(200).json({ message: "Logout successful" });
   } catch (error) {
     console.error("Đã xảy ra lỗi:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ error: "Cần đăng nhập" });
   }
 };
