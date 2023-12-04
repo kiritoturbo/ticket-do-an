@@ -17,8 +17,8 @@ router.put("/:id", [
   controller.updateRoom,
 ]);
 router.put("/availability/:id", [
-  verifyAuth.validJWTNeeded,
-  verifyAuth.minimumPermissionLevelRequired(config.permissionLevel.ADMIN),
+  // verifyAuth.validJWTNeeded,
+  // verifyAuth.minimumPermissionLevelRequired(config.permissionLevel.ADMIN),
   controller.updateRoomAvailability,
 ]);
 // delete
