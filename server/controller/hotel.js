@@ -97,6 +97,7 @@ module.exports.countByType = async (req, res, next) => {
 };
 
 module.exports.getHotelRooms = async (req, res, next) => {
+  console.log(req.params.id);
   try {
     const hotel = await Hotel.findById(req.params.id);
     const list = await Promise.all(

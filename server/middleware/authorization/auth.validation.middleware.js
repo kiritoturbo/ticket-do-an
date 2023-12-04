@@ -3,6 +3,7 @@ const { verifyToken } = require("../../helper/jwt.helper");
 
 module.exports = {
   validJWTNeeded: (req, res, next) => {
+    console.log(req.headers["authorization"]);
     if (req.headers["authorization"]) {
       try {
         let authorization = req.headers["authorization"].split(" ");
