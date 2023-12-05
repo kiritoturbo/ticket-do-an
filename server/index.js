@@ -22,6 +22,11 @@ const moment = require("moment-timezone");
 const { port, mongoUrl, corsOrigin } = key;
 
 const app = express();
+//adding socket.io configuration
+const http = require("http");
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
 
 require("./db").connectMongoDb(mongoUrl);
 // Đặt múi giờ Hà Nội
@@ -72,6 +77,17 @@ app.use(function (err, req, res, next) {
   res.status(500).json({ errors: ["Lỗi máy chủ nội bộ"] });
 });
 
-app.listen(port, () => {
+// app.listen(port, () => {
+//   console.log("Server is running at " + port);
+// });
+io.on("connection", (socket) => {
+  //console.log('a user connected', socket.id);
+  socket.on("comment", (msg) => {
+    // console.log('new comment received', msg);
+    io.emit("new-comment", msg);
+  });
+});
+exports.io = io;
+server.listen(port, () => {
   console.log("Server is running at " + port);
 });

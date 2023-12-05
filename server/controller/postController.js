@@ -1,6 +1,6 @@
 const Post = require("../model/postModel");
 const cloudinary = require("cloudinary").v2;
-// const main = require("../app");
+const main = require("../index");
 
 //create post
 exports.createPost = async (req, res, next) => {
@@ -174,7 +174,7 @@ exports.addLike = async (req, res, next) => {
     const posts = await Post.find()
       .sort({ createdAt: -1 })
       .populate("postedBy", "name");
-    // main.io.emit("add-like", posts);
+    main.io.emit("add-like", posts);
 
     res.status(200).json({
       success: true,
@@ -200,7 +200,7 @@ exports.removeLike = async (req, res, next) => {
     const posts = await Post.find()
       .sort({ createdAt: -1 })
       .populate("postedBy", "name");
-    // main.io.emit("remove-like", posts);
+    main.io.emit("remove-like", posts);
 
     res.status(200).json({
       success: true,
