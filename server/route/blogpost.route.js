@@ -27,15 +27,7 @@ router.put("/update/post/:id", [
   // cloudinary.single("image"),
   controller.updatePost,
 ]);
-router.put(
-  "/comment/post/:id",
-  // isAuthenticated,
-  controller.addComment
-);
-router.put(
-  "/addlike/post/:id",
-  //  isAuthenticated,
-  controller.addLike
-);
+router.put("/comment/post/:id", isAuthenticated, controller.addComment);
+router.put("/addlike/post/:id", isAuthenticated, controller.addLike);
 router.put("/removelike/post/:id", isAuthenticated, controller.removeLike);
 module.exports = router;
