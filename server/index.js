@@ -41,7 +41,7 @@ app.use(bodyParser.json({ limit: "10mb" })); // Thay đổi giới hạn theo nh
 
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
-app.use(cors(corsOption));
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.json({ success: true });
@@ -81,7 +81,7 @@ app.use(function (err, req, res, next) {
 //   console.log("Server is running at " + port);
 // });
 io.on("connection", (socket) => {
-  //console.log('a user connected', socket.id);
+  console.log("a user connected", socket.id);
   socket.on("comment", (msg) => {
     // console.log('new comment received', msg);
     io.emit("new-comment", msg);
