@@ -16,6 +16,7 @@ import Reserve from "../../components/reserve/Reserve";
 import useFetch from "../../../../hooks/useFetch";
 import { SearchContext } from "../../../../context/SearchContext";
 import { AuthContext } from "../../../../context/AuthContext";
+import { useSelector } from "react-redux";
 
 const Hotel = () => {
   const location = useLocation();
@@ -25,7 +26,9 @@ const Hotel = () => {
   const [openModal, setOpenModal] = useState(false);
 
   const { data, loading, error } = useFetch(`/hotels/find/${id}`);
-  const { user } = useContext(AuthContext);
+  console.log(data);
+  // const { user } = useContext(AuthContext);
+  const user = window.localStorage.getItem("user");
   const navigate = useNavigate();
 
   const { dates, options } = useContext(SearchContext);

@@ -25,11 +25,13 @@ import {
   cancelBillSuccess,
   cancelBillFailed,
 } from "./types";
+import { useSelector } from "react-redux";
 import Flight from "../api/Flight";
 import history from "../history";
 import Airport from "../api/Airport";
 import { reset } from "redux-form";
 import axios from "axios";
+import Booking from "../api/Booking";
 var markers = [];
 var markerDetails = [];
 let distance;
@@ -39,8 +41,8 @@ let pricePerKm = 4;
 let serverUri = process.env.REACT_APP_SERVER_URI;
 // let token = window.localStorage.getItem("token");
 
-const token = window.localStorage.getItem("token");
-console.log("token" + token);
+// const token = window.localStorage.getItem("token");
+// console.log("token" + token);
 
 export const getAllMarkers = (marker, result, type) => async (dispatch) => {
   if (markers.length < 2) {
@@ -88,8 +90,9 @@ export const signupUser =
     try {
       dispatch({ type: "signupRequest" });
 
-      let msg = await axios.post(
-        serverUri + "/signup",
+      let msg = await Booking.post(
+        // serverUri + "/signup",
+        "/authentication/register",
         { email: email, password: password },
         {
           headers: {
@@ -97,18 +100,18 @@ export const signupUser =
           },
         }
       );
-
-      if (msg.data.token != undefined) {
-        window.localStorage.setItem("token", msg.data.token);
-        dispatch({
-          type: "signupSuccess",
-          msg: msg.data.msg,
-        });
-      }
+      // if (msg.data.token != undefined) {
+      // window.localStorage.setItem("token", msg.data.token);
+      dispatch({
+        type: "signupSuccess",
+        msg: msg.data,
+      });
+      // }
     } catch (error) {
+      console.log(error);
       dispatch({
         type: "signupFailed",
-        err: error.response.data.err,
+        err: error?.response.data.err,
       });
     }
   };
@@ -119,8 +122,9 @@ export const signinUser =
     try {
       dispatch({ type: "signinRequest" });
 
-      let msg = await axios.post(
-        serverUri + "/login",
+      let msg = await Booking.post(
+        // serverUri + "/login",
+        "/authentication/login",
         { email: email, password: password },
         {
           headers: {
@@ -128,21 +132,23 @@ export const signinUser =
           },
         }
       );
+      console.log(msg);
       const username = msg.data.userName;
       const usname = username.split("@")[0];
-      console.log(usname);
-      if (msg.data.token != undefined) {
+      if (msg.data?.accessToken != undefined) {
         window.localStorage.setItem("user", usname);
-        window.localStorage.setItem("token", msg.data.token);
+        window.localStorage.setItem("token", msg.data?.accessToken);
+        window.localStorage.setItem("refreshtoken", msg.data?.refreshToken);
         dispatch({
           type: "signinSuccess",
           msg: msg.data.msg,
+          payload: msg.data,
         });
       }
     } catch (error) {
       dispatch({
         type: "signinFailed",
-        err: error.response.data.err,
+        err: error?.response,
       });
     }
   };
@@ -150,6 +156,8 @@ export const signinUser =
 export const createBill =
   ({ locations, car, datetime, grandTotal, image }) =>
   async (dispatch) => {
+    const token = window.localStorage.getItem("token");
+
     try {
       dispatch({ type: "createBillRequest" });
 
@@ -182,6 +190,7 @@ export const createBill =
   };
 
 export const getBill = () => async (dispatch) => {
+  const token = window.localStorage.getItem("token");
   try {
     let bill = await axios.get(serverUri + "/getbill", {
       headers: {
@@ -203,7 +212,8 @@ export const getBill = () => async (dispatch) => {
 };
 
 export const cancelBooking = (id) => async (dispatch) => {
-  console.log(id);
+  const token = window.localStorage.getItem("token");
+
   try {
     let msg = await axios.delete(serverUri + `/cancelbill/${id}`, {
       headers: {

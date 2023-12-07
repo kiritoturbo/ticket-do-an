@@ -17,6 +17,7 @@ import { Bannertourhome } from "./Bannertourhome";
 import { Questionhome } from "./Questionhome";
 import { Swiperbanner } from "./Swiperbanner";
 import { Link } from "react-router-dom";
+import { PostBlog } from "./pages/PostBlog";
 
 // import Button from "./Button";
 
@@ -167,6 +168,9 @@ function HeroSection() {
           <div className="max-w-[1230px] mx-auto mt-[30px]">
             <Bannertourhome />
           </div>
+          {/* <div className="max-w-[1200px] mx-auto mt-[30px]"> */}
+          <PostBlog />
+          {/* </div> */}
           <div className="questionAlway max-w-[1230px] mx-auto mt-[30px] mb-[30px]">
             <Questionhome />
           </div>

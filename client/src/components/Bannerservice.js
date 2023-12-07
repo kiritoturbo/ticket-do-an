@@ -8,8 +8,23 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 import "../index.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import Booking from "../api/Booking";
 
 export const Bannerservice = () => {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    Booking.get("/banner/posts/show")
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <>
       <Swiper
@@ -45,35 +60,20 @@ export const Bannerservice = () => {
           },
         }}
       >
-        <SwiperSlide>
-          <div className="boxImageBanner">
-            <a href="!#">
-              <img src="assets/banner1.webp" alt="" />
-            </a>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="boxImageBanner">
-            <a href="!#">
-              <img src="assets/banner3.webp" alt="" />
-            </a>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="boxImageBanner">
-            <a href="!#">
-              <img src="assets/banner2.webp" alt="" />
-            </a>
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <div className="boxImageBanner">
-            <a href="!#">
-              <img src="assets/banner4.webp" alt="" />
-            </a>
-          </div>
-        </SwiperSlide>
+        {data &&
+          data?.posts.map((item, index) => (
+            <SwiperSlide>
+              <div className="boxImageBanner">
+                <Link to={`/banner/post/${item?._id}`}>
+                  <img
+                    className="max-w-[585px] max-h-[293px] object-cover"
+                    src={item?.image.url}
+                    alt={item?.title}
+                  />
+                </Link>
+              </div>
+            </SwiperSlide>
+          ))}
       </Swiper>
     </>
   );

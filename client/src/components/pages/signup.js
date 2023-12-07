@@ -34,16 +34,18 @@ export default function SignupFlight() {
   const { msg, err } = useSelector((state) => state.authReducer);
 
   useEffect(() => {
-    if (msg != undefined) {
-      setDetails(msg);
+    if (msg?.msg != undefined) {
+      // setDetails(msg.);
+      console.log(msg);
       setTimeout(() => {
-        // window.location.href = "/";
-        navigation("/");
+        window.location.href = "/login";
+        // navigation("/login");
       }, [2000]);
     } else {
+      console.log(err);
       setDetails(err);
     }
-  }, [msg, err]);
+  }, [msg?.msg, err, navigation]);
 
   return (
     <div className="registerContainer">

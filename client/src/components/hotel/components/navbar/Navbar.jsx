@@ -11,7 +11,7 @@ const NavbarHotel = () => {
       <div className="navContainer">
         <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
           <span className="logo">
-            <img src="assets/vj-white-logo.f34b6108.svg" alt="" />
+            <img src="/assets/vj-white-logo.f34b6108.svg" alt="" />
           </span>
         </Link>
 

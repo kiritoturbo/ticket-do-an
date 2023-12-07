@@ -1,19 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { BiSolidUserCircle, BiSolidDownArrow } from "react-icons/bi";
-import Button from "./Button";
 import "./Navbar.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
 import { IoMdClose } from "react-icons/io";
 import ScrollToTopButton from "./ScollToTopButton";
-import logout from "../api/logout";
-import { Alert } from "@mui/material";
 
 function NavBar() {
   const navigator = useNavigate();
-  // const { user } = useContext(AuthContext);
-  const { setUser } = useContext(AuthContext);
   const location = useLocation();
   const [isHomePage, setIsHomePage] = useState(false);
   const [isOverlay, setOverlay] = useState(false);
@@ -24,7 +18,6 @@ function NavBar() {
   }, [location]);
 
   const [click, setClick] = useState(false);
-  const [button, setButton] = useState(true);
   const [popup, setPopup] = useState(false);
   const [clicked, setClicked] = useState(false);
   const handleClick = () => {
@@ -37,21 +30,6 @@ function NavBar() {
     setClick(false);
   };
 
-  const showButton = () => {
-    if (window.innerWidth <= 960) {
-      setButton(false);
-    } else {
-      setButton(true);
-    }
-  };
-
-  useEffect(() => {
-    showButton();
-    window.addEventListener("resize", showButton);
-    return () => {
-      window.removeEventListener("resize", showButton);
-    };
-  }, []);
   const headerStyle = {
     background: isHomePage
       ? "linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.095) 100%)"
@@ -61,8 +39,8 @@ function NavBar() {
     position: isHomePage ? "fixed" : "",
   };
   const logoPath = isHomePage
-    ? "/assets/vj-logo.0f71c68b.svg"
-    : "assets/vj-white-logo.f34b6108.svg";
+    ? "assets/vj-logo.0f71c68b.svg"
+    : "/assets/vj-white-logo.f34b6108.svg";
   const [isPopupAlert, setPopupAlert] = useState(false);
   const token = window.localStorage.getItem("token");
   const user = window.localStorage.getItem("user");

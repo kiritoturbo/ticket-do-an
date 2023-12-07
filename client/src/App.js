@@ -27,7 +27,10 @@ import SignupFlight from "./components/pages/signup";
 import LoginFlight from "./components/pages/login";
 import moment from "moment-timezone";
 import VnpaySuccess from "./components/vnpaySuccess";
-
+import { SingleBanner } from "./components/singleBanner";
+import SinglePost from "./components/pages/SinglePost";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App(props) {
   // Đặt múi giờ cho ứng dụng
   // moment.tz.setDefault("Asia/Ho_Chi_Minh");
@@ -37,6 +40,7 @@ function App(props) {
   }, []);
   return (
     <>
+      <ToastContainer />
       <Router>
         <Routes>
           <Route
@@ -55,6 +59,8 @@ function App(props) {
                   <Route path="billing-info" element={<BillingInfo />} />
                   <Route path="booking-success" element={<BookingSuccess />} />
                   <Route path="ordervnpay-success" element={<VnpaySuccess />} />
+                  <Route path="banner/post/:id" element={<SingleBanner />} />
+                  <Route path="blog/post/:id" element={<SinglePost />} />
                 </Routes>
                 <Footer />
               </>

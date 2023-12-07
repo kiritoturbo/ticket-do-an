@@ -28,6 +28,7 @@ export const authReducer = (state = INITIAL_VALUE, action) => {
       return {
         ...state,
         loading: false,
+        userInfo: null,
         err: action.err,
         isAuthenticated: false,
       };
@@ -40,7 +41,8 @@ export const authReducer = (state = INITIAL_VALUE, action) => {
       return {
         ...state,
         loading: false,
-        msg: action.msg,
+        userInfo: action.payload,
+        msg: action.payload,
         isAuthenticated: true,
       };
     case "signinFailed":

@@ -8,12 +8,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1000;
 }
 
 .rContainer {
   background-color: white;
   padding: 20px;
   position: relative;
+  max-height: 500px;
+  overflow: auto;
 }
 
 .rClose {
@@ -21,11 +24,13 @@
   top: 0;
   right: 0;
   cursor: pointer;
+  font-size: 24px;
 }
 
 .rItem {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: space-between;
   gap: 50px;
   padding: 20px;
 }
@@ -52,7 +57,7 @@
   font-weight: 500;
 }
 
-.rSelectRooms{
+.rSelectRooms {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
@@ -60,7 +65,7 @@
   color: gray;
 }
 
-.room{
+.room {
   display: flex;
   flex-direction: column;
 }

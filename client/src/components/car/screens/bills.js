@@ -112,12 +112,13 @@ export default function Bills() {
                   </button>
                   <button
                     onClick={() => {
+                      console.log(bill._id);
                       dispatch(cancelBooking(bill._id));
                       setPopup(!popup);
                       setTimeout(() => {
-                        // window.location.href = "/";
-                        navigatior("/car/map-address");
-                      }, [4000]);
+                        window.location.href = "/car/map-address";
+                        // navigatior("/car/map-address");
+                      }, [3000]);
                     }}
                     className="btn"
                   >

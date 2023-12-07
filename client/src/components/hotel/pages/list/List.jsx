@@ -16,11 +16,13 @@ const ListHotel = () => {
   const [options, setOptions] = useState(location.state?.options);
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
-
   const { data, loading, error, reFetch } = useFetch(
     `/hotels?city=${destination}&min=${min || 0}&max=${max || 999}`
   );
-
+  const handleInputChange = (event) => {
+    // Lấy giá trị từ thuộc tính value của input và cập nhật state
+    setDestination(event.target.value);
+  };
   const handleClick = () => {
     reFetch();
   };
@@ -35,14 +37,18 @@ const ListHotel = () => {
             <h1 className="lsTitle">Search</h1>
             <div className="lsItem">
               <label>Destination</label>
-              <input placeholder={destination} type="text" />
+              <input
+                placeholder={destination}
+                onChange={handleInputChange}
+                type="text"
+              />
             </div>
             <div className="lsItem">
               <label>Check-in Date</label>
               <span onClick={() => setOpenDate(!openDate)}>{`${format(
                 dates[0].startDate,
-                "MM/dd/yyyy"
-              )} to ${format(dates[0]?.endDate, "MM/dd/yyyy")}`}</span>
+                "dd/MM/yyyy"
+              )} to ${format(dates[0]?.endDate, "dd/MM/yyyy")}`}</span>
               {openDate && (
                 <DateRange
                   onChange={(item) => setDates([item.selection])}

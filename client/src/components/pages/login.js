@@ -14,7 +14,12 @@ export default function LoginFlight() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const { msg, err } = useSelector((state) => state.authReducer);
+  const { msg, err } =
+    useSelector((state) => {
+      console.log(state.authReducer);
+      return state.authReducer;
+    }) || {};
+  console.log(msg);
 
   if (email !== "" && password !== "") {
     enable = true;
@@ -31,15 +36,15 @@ export default function LoginFlight() {
 
   useEffect(() => {
     if (msg !== undefined) {
-      setDetails(msg);
+      setDetails(msg?.msg);
       setTimeout(() => {
-        window.location.href = "/";
-        // navigate("/");
+        // window.location.href = "/";
+        navigate("/");
       }, [2000]);
     } else {
-      setDetails(err);
+      setDetails(err?.data?.error);
     }
-  }, [msg, err]);
+  }, [msg, err, navigate]);
 
   return (
     <div className="registerContainer">
