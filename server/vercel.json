@@ -8,10 +8,11 @@
     ],
     "routes": [
       {
-        "src": "/socket.io/**",
-        "status": 308,
-        "headers": { "Location": "https://ticket-truong-client.web.app" },
-        "dest": "/socket.io/**"
+        "src": "/socket.io/(.*)",
+        "headers": {
+          "Access-Control-Allow-Origin": "*"
+        },
+        "dest": "/socket.io/$1"
       },
       {
         "src": "/(.*)",
