@@ -87,7 +87,7 @@ app.use(function (err, req, res, next) {
 io.on("connection", (socket) => {
   console.log("a user connected", socket.id);
   socket.on("comment", (msg) => {
-    // console.log('new comment received', msg);
+    console.log("new comment received", msg);
     io.emit("new-comment", msg);
   });
 });
