@@ -10,7 +10,8 @@
       {
         "src": "/socket.io/**",
         "status": 308,
-        "headers": { "Location": "https://ticket-truong-client.web.app" }
+        "headers": { "Location": "https://ticket-truong-client.web.app" },
+        "dest": "/socket.io/**"
       },
       {
         "src": "/(.*)",
