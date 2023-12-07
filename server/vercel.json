@@ -8,14 +8,15 @@
     ],
     "routes": [
       {
-        "src": "/(.*)",
-        "dest": "/"
-      },
-      {
         "src": "/socket.io/**",
         "headers": {
           "Access-Control-Allow-Origin": "*"
-        }
+        },
+        "dest": "/socket.io/**"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/"
       }
     ]
   }
