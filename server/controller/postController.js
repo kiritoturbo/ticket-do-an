@@ -175,17 +175,15 @@ exports.addLike = async (req, res, next) => {
     //   .sort({ createdAt: -1 })
     //   .populate("postedBy", "name");
     // main.io.emit("add-like", posts);
-    const updatedPost = await Post.findById(req.params.id)
-      .populate("postedBy", "email")
-      .populate("comments.postedBy", "email");
-
-    main.io.emit("add-like", updatedPost);
+    const posts = await Post.find()
+      .sort({ createdAt: -1 })
+      .populate("postedBy", "email");
+    main.io.emit("add-like", posts);
 
     res.status(200).json({
       success: true,
-      // post,
-      // posts,
-      post: updatedPost,
+      post,
+      posts,
     });
   } catch (error) {
     next(error);
@@ -203,20 +201,14 @@ exports.removeLike = async (req, res, next) => {
       { new: true }
     );
 
-    // const posts = await Post.find()
-    //   .sort({ createdAt: -1 })
-    //   .populate("postedBy", "name");
-    // main.io.emit("remove-like", posts);
-    const updatedPost = await Post.findById(req.params.id)
-      .populate("postedBy", "email")
-      .populate("comments.postedBy", "email");
-
-    main.io.emit("remove-like", updatedPost);
+    const posts = await Post.find()
+      .sort({ createdAt: -1 })
+      .populate("postedBy", "name");
+    main.io.emit("remove-like", posts);
 
     res.status(200).json({
       success: true,
-      // post,
-      post: updatedPost,
+      post,
     });
   } catch (error) {
     next(error);
