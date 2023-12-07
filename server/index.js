@@ -31,6 +31,7 @@ const io = new Server(server, {
     origin: "https://ticket-truong-client.web.app",
   },
 });
+console.log(io);
 
 require("./db").connectMongoDb(mongoUrl);
 // Đặt múi giờ Hà Nội
