@@ -28,10 +28,10 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server, {
   cors: {
-    origin: "https://ticket-truong-client.web.app",
+    origin: "*",
   },
 });
-console.log(io);
+// console.log(io);
 
 require("./db").connectMongoDb(mongoUrl);
 // Đặt múi giờ Hà Nội
