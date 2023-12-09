@@ -203,7 +203,7 @@ exports.removeLike = async (req, res, next) => {
 
     const posts = await Post.find()
       .sort({ createdAt: -1 })
-      .populate("postedBy", "name");
+      .populate("postedBy", "email");
     console.log(posts);
     main.io.emit("remove-like", posts);
 

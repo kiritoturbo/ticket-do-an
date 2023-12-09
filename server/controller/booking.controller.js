@@ -107,6 +107,7 @@ let changeSeat = async (ticketObject) => {
 };
 
 module.exports.createBookingAndTickets = async (req, res) => {
+  console.log(req.body);
   let ticketInfos;
   if (req.body.hasOwnProperty("ticketInfos")) {
     ticketInfos = req.body.ticketInfos;
@@ -120,7 +121,7 @@ module.exports.createBookingAndTickets = async (req, res) => {
   //   return res.status(400).json({ errors: ["Does not found any tickets"] });
   // }
   let ticketObjects = [];
-  console.log("cần xem :" + ticketObjects);
+  console.log(ticketObjects);
   try {
     let ticketPromises = ticketInfos.map((element) => {
       return ticketModel.create(element);

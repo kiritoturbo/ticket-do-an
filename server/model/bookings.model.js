@@ -16,6 +16,11 @@ const bookingSchema = new Schema(
     tickets: [{ type: mongoose.Types.ObjectId, ref: "Tickets" }],
     totalPrice: Number,
     additional: Schema.Types.Mixed,
+    paymentMethod: {
+      type: String,
+      enum: ["creditCard", "vnPay"],
+      required: true,
+    },
     status: Boolean,
   },
   { timestamps: true }
@@ -149,6 +154,7 @@ module.exports = {
           nationality: { $first: "$nationality" },
           totalPrice: { $first: "$totalPrice" },
           additional: { $first: "$additional" },
+          paymentMethod: { $first: "$paymentMethod" },
           status: { $first: "$status" },
           tickets: { $push: "$tickets" },
           updatedAt: { $first: "$updatedAt" },
