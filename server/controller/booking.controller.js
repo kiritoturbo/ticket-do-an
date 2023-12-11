@@ -322,7 +322,11 @@ module.exports.sendEmail = async (req, res) => {
      </div>
     </div>`;
   const pdfOptions = { format: "A4" };
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    executablePath:
+      process.env.PUPPETEER_EXECUTABLE_PATH || "/vercel/path/to/chromium",
+    headless: "new",
+  });
   const page = await browser.newPage();
   try {
     // const pdfBuffer = await pdf.generatePdf(
