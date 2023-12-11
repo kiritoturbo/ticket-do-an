@@ -324,6 +324,8 @@ module.exports.sendEmail = async (req, res) => {
   const pdfOptions = { format: "A4" };
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
+  await page.setViewport({ width: 1920, height: 1080 });
+  await page.goto("https://ticket-truong-client.web.app");
   try {
     // const pdfBuffer = await pdf.generatePdf(
     //   { content: ticketBooking(req.body) },
