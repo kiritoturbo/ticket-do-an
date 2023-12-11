@@ -293,7 +293,7 @@ module.exports = (booking) => {
               top: 10px;
               left: 20px;
               font-family: Arial;
-              font-size: 38px;
+              font-size: 18px;
               color: #222;
           }
   
@@ -302,7 +302,7 @@ module.exports = (booking) => {
               top: 10px;
               left: 180px;
               font-family: Arial;
-              font-size: 38px;
+              font-size: 18px;
               color: #222;
           }
   
@@ -584,17 +584,27 @@ module.exports = (booking) => {
                   <div class="sub-content">
                       <span class="watermark">VIETJET AIR </span>
                       <span class="name">Tên hành khách <br><span>${
-                        booking?.buyName || booking?.ticket?.buyName
+                        booking?.props.buyerName ||
+                        booking?.props.ticket.buyerName
                       }</span></span>
-                      <span class="flight">FLIGHT N&deg;<br><span>X3-65C3</span></span>
-                      <span class="gate">GATE<br><span>11B</span></span>
-                      <span class="seat">SEAT<br><span>45A</span></span>
-                      <span class="boardingtime">BOARDING TIME<br><span>8:25PM ON AUGUST 2013</span></span>
+                      <span class="flight">Mã đặt vé<br><span>${
+                        booking?.props.pnr || booking?.props.ticket.pnr
+                      }</span></span>
+                     
+                        
+                      </span></span>
+                      <span class="boardingtime">Ngày đặt<br><span>${
+                        booking?.props.createdAt ||
+                        booking?.props.ticket.createdAt
+                      }</span></span>
   
-                      <span class="flight flightslip">FLIGHT N&deg;<br><span>X3-65C3</span></span>
-                      <span class="seat seatslip">SEAT<br><span>45A</span></span>
+                      <span class="flight flightslip">Mã đặt vé<br><span>${
+                        booking?.props.pnr || booking?.props.ticket.pnr
+                      }</span></span>
+                    
                       <span class="name nameslip">PASSENGER NAME<br><span>${
-                        booking?.buyName
+                        booking?.props.buyerName ||
+                        booking?.props.ticket.buyerName
                       }</span></span>
                   </div>
               </div>

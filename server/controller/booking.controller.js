@@ -5,7 +5,8 @@ const emailHelper = require("../helper/email.helper");
 const validation = require("../helper/verify.helper");
 const ticketBooking = require("../documents");
 var pdf = require("html-pdf-node");
-const puppeteer = require("puppeteer-core");
+const puppeteer = require("puppeteer-core"); //hoạt động trên hosting
+// const puppeteer = require("puppeteer");//hoạt động trên local
 const chromium = require("@sparticuz/chromium");
 chromium.setHeadlessMode = true;
 chromium.setGraphicsMode = false;
@@ -331,6 +332,7 @@ module.exports.sendEmailll = async (req, res) => {
     executablePath: await chromium.executablePath(),
     headless: chromium.headless,
   });
+  // const browser = await puppeteer.launch();//localhost hoạt động
   const page = await browser.newPage();
   await page.setViewport({ width: 1920, height: 1080 });
   // await page.goto("https://developer.chrome.com/");
