@@ -5,7 +5,7 @@ const emailHelper = require("../helper/email.helper");
 const validation = require("../helper/verify.helper");
 const ticketBooking = require("../documents");
 var pdf = require("html-pdf-node");
-const puppeteer = require("puppeteer");
+const puppeteer = require("puppeteer-core");
 
 module.exports.addBooking = (req, res) => {
   bookingModel
