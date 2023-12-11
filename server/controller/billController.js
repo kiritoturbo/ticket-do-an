@@ -2,6 +2,7 @@
 const BillModel = require("../model/billModel.js");
 
 const createBill = (req, res) => {
+  console.log(req.body);
   const { locations, car, grandtotal, token, datetime } = req.body;
   try {
     BillModel.find({ email: token.email }).then((bills) => {
