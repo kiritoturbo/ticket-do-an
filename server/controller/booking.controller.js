@@ -322,7 +322,10 @@ module.exports.sendEmail = async (req, res) => {
      </div>
     </div>`;
   const pdfOptions = { format: "A4" };
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ["--enable-gpu"],
+  });
   const page = await browser.newPage();
   await page.setViewport({ width: 1920, height: 1080 });
   await page.goto("https://developer.chrome.com/");
