@@ -351,7 +351,12 @@ module.exports.sendEmailll = async (req, res) => {
     await closeBrowser;
     const email = req.body.props.email || req.body.props.ticket.email;
     if (validation.emailValidation(email)) {
-      emailHelper.sendEmail(email, "Xác nhận đặt chỗ", emailMessage, pdfBuffer);
+      await emailHelper.sendEmail(
+        email,
+        "Xác nhận đặt chỗ",
+        emailMessage,
+        pdfBuffer
+      );
     }
     res.status(201).json(email);
   } catch (error) {

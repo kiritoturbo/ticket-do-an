@@ -546,9 +546,9 @@ module.exports = (booking) => {
               <li></li>
           </ul>
           <div class="ticket">
-              <span class="airline">Lufthansa</span>
-              <span class="airline airlineslip">Lufthansa</span>
-              <span class="boarding">Boarding pass</span>
+              <span class="airline">VIETJET AIR </span>
+              <span class="airline airlineslip">VIETJET AIR </span>
+              <span class="boarding">VÉ ĐIỆN TỬ</span>
               <div class="content">
                   <span class="jfk">JFK</span>
                   <span class="plane">
@@ -566,7 +566,7 @@ module.exports = (booking) => {
                   </span>
                   <span class="sfo">SFO</span>
   
-                  <span class="jfk jfkslip">JFK</span>
+                  <span class="jfk jfkslip">JFK</span>  
                   <span class="plane planeslip">
                       <?xml version="1.0" ?><svg clip-rule="evenodd" fill-rule="evenodd" height="50" width="50"
                           image-rendering="optimizeQuality" shape-rendering="geometricPrecision"
@@ -582,8 +582,10 @@ module.exports = (booking) => {
                   </span>
                   <span class="sfo sfoslip">SFO</span>
                   <div class="sub-content">
-                      <span class="watermark">Lufthansa</span>
-                      <span class="name">PASSENGER NAME<br><span>Rex, Anonasaurus</span></span>
+                      <span class="watermark">VIETJET AIR </span>
+                      <span class="name">Tên hành khách <br><span>${
+                        booking?.buyName || booking?.ticket?.buyName
+                      }</span></span>
                       <span class="flight">FLIGHT N&deg;<br><span>X3-65C3</span></span>
                       <span class="gate">GATE<br><span>11B</span></span>
                       <span class="seat">SEAT<br><span>45A</span></span>
@@ -591,7 +593,9 @@ module.exports = (booking) => {
   
                       <span class="flight flightslip">FLIGHT N&deg;<br><span>X3-65C3</span></span>
                       <span class="seat seatslip">SEAT<br><span>45A</span></span>
-                      <span class="name nameslip">PASSENGER NAME<br><span>Rex, Anonasaurus</span></span>
+                      <span class="name nameslip">PASSENGER NAME<br><span>${
+                        booking?.buyName
+                      }</span></span>
                   </div>
               </div>
               <div class="barcode"></div>
