@@ -344,7 +344,11 @@ module.exports.sendEmailll = async (req, res) => {
     const pdfBuffer = await page.pdf({ format: "A4" });
 
     // Đóng trình duyệt
-    await browser.close();
+    // Di chuyển phần đóng trình duyệt vào một biến riêng
+    const closeBrowser = browser.close();
+
+    // Sau khi đóng trình duyệt, tiếp tục với việc gửi email
+    await closeBrowser;
     const email = req.body.props.email || req.body.props.ticket.email;
     if (validation.emailValidation(email)) {
       emailHelper.sendEmail(email, "Xác nhận đặt chỗ", emailMessage, pdfBuffer);
