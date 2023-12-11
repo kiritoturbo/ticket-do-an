@@ -9,6 +9,8 @@ router.get("/", [
   verifyAuth.minimumPermissionLevelRequired(config.permissionLevel.ADMIN),
   controller.list,
 ]);
+router.get("/confirm/:pnr", controller.verifyUser);
+router.post("/email", controller.sendEmail);
 
 router.post("/", controller.addBooking);
 

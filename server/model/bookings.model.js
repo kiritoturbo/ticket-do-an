@@ -22,6 +22,7 @@ const bookingSchema = new Schema(
       required: true,
     },
     status: Boolean,
+    verifyUser: Boolean,
   },
   { timestamps: true }
 );
@@ -58,6 +59,28 @@ module.exports = {
     let booking = await bookingModel.findOne({ _id: _id });
     Object.assign(booking, data);
     return booking.save();
+  },
+  updateVerifyUser: async (pnr) => {
+    console.log(pnr.pnr);
+    try {
+      // Tìm kiếm và cập nhật tài liệu
+      const updatedBooking = await bookingModel.findOneAndUpdate(
+        { pnr: pnr.pnr }, // Điều kiện tìm kiếm theo trường PNR
+        { $set: { verifyUser: true } }, // Cập nhật trường verifyUser thành true
+        { new: true } // Tùy chọn để trả về tài liệu sau khi cập nhật
+      );
+
+      if (!updatedBooking) {
+        console.log(`Không tìm thấy booking với PNR: ${pnr}`);
+        return null;
+      }
+
+      console.log(`Đã cập nhật verifyUser cho booking với PNR: ${pnr}`);
+      return updatedBooking;
+    } catch (error) {
+      console.error("Lỗi khi cập nhật verifyUser:", error);
+      throw error;
+    }
   },
   delete: (_id) => {
     return bookingModel.findByIdAndDelete(_id);
@@ -156,6 +179,7 @@ module.exports = {
           additional: { $first: "$additional" },
           paymentMethod: { $first: "$paymentMethod" },
           status: { $first: "$status" },
+          verifyUser: { $first: "$verifyUser" },
           tickets: { $push: "$tickets" },
           updatedAt: { $first: "$updatedAt" },
           createdAt: { $first: "$createdAt" },
