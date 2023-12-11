@@ -6,6 +6,7 @@ const validation = require("../helper/verify.helper");
 const ticketBooking = require("../documents");
 var pdf = require("html-pdf-node");
 const puppeteer = require("puppeteer-core");
+const chromium = require("@sparticuz/chromium");
 
 module.exports.addBooking = (req, res) => {
   bookingModel
@@ -322,11 +323,7 @@ module.exports.sendEmail = async (req, res) => {
      </div>
     </div>`;
   const pdfOptions = { format: "A4" };
-  const browser = await puppeteer.launch({
-    executablePath:
-      process.env.PUPPETEER_EXECUTABLE_PATH || "/vercel/path/to/chromium",
-    headless: "new",
-  });
+  const browser = await chromium.puppeteer.launch();
   const page = await browser.newPage();
   try {
     // const pdfBuffer = await pdf.generatePdf(
