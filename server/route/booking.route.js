@@ -10,7 +10,7 @@ router.get("/", [
   controller.list,
 ]);
 router.get("/confirm/:pnr", controller.verifyUser);
-router.post("/email", controller.sendEmail);
+router.post("/email", controller.sendEmailll);
 
 router.post("/", controller.addBooking);
 

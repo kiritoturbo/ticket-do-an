@@ -243,7 +243,7 @@ module.exports.verifyUser = async (req, res) => {
       res.status(500).json({ errors: e });
     });
 };
-module.exports.sendEmail = async (req, res) => {
+module.exports.sendEmailll = async (req, res) => {
   let emailMessage = `<div style="font-family:sans-serif"><div class="adM"> 
       </div><table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0" style="background:#e6eaed"> 
        <tbody>
@@ -288,7 +288,7 @@ module.exports.sendEmail = async (req, res) => {
                     req.body.props.pnr || req.body.props.ticket.pnr
                   }</span></p> </td> 
                 </tr> 
-                <div style="width:100%;height:16px;display:block"></div> <p style="line-height:25px;font-size:16px;padding:0px;margin:0px"> Nhấp vào liên kết sau để xác nhận email của bạn: <a href="http://localhost:3000/verifyUser/${
+                <div style="width:100%;height:16px;display:block"></div> <p style="line-height:25px;font-size:16px;padding:0px;margin:0px"> Nhấp vào liên kết sau để xác nhận email của bạn: <a href="https://ticket-truong-client.web.app/verifyUser/${
                   req.body.props.pnr || req.body.props.ticket.pnr
                 }">Confirm Email</a></td> 
                 <tr> 
@@ -324,7 +324,7 @@ module.exports.sendEmail = async (req, res) => {
       <img style="display:block;font-size:0px;line-height:0em" src="https://ci5.googleusercontent.com/proxy/cdw-MENhpV8AlrnT5wilQ84y-djlWqJlo1Y40enyGwtAepIbKqZ1n3IO5PEvpNTzcwV1jrExm7f2tV9dUGXp7GmWt-fV18hMeL6XNscX9uKo3OJQXMWrq75yptw=s0-d-e1-ft#https://messaging-callback-api.msg.traveloka.com/o?id=1697564480904392067" alt="" width="1" height="1" border="0" class="CToWUd"><div class="yj6qo"></div><div class="adL">
      </div>
     </div>`;
-  const pdfOptions = { format: "A4" };
+  // const pdfOptions = { format: "A4" };
   const browser = await puppeteer.launch({
     args: chromium.args,
     defaultViewport: chromium.defaultViewport,
@@ -333,7 +333,7 @@ module.exports.sendEmail = async (req, res) => {
   });
   const page = await browser.newPage();
   await page.setViewport({ width: 1920, height: 1080 });
-  await page.goto("https://developer.chrome.com/");
+  // await page.goto("https://developer.chrome.com/");
   try {
     // const pdfBuffer = await pdf.generatePdf(
     //   { content: ticketBooking(req.body) },
