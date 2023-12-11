@@ -289,7 +289,7 @@ module.exports.sendEmailll = async (req, res) => {
                     req.body.props.pnr || req.body.props.ticket.pnr
                   }</span></p> </td> 
                 </tr> 
-                <div style="width:100%;height:16px;display:block"></div> <p style="line-height:25px;font-size:16px;padding:0px;margin:0px"> Nhấp vào liên kết sau để xác nhận email của bạn: <a href="https://ticket-truong-client.web.app/verifyUser/${
+                <div style="width:100%;height:16px;display:block"></div> <p style="line-height:25px;font-size:16px;padding:0px;margin:0px"> Nhấp vào liên kết sau để xác nhận email của bạn: <a href="http://localhost:2020/verifyUser/${
                   req.body.props.pnr || req.body.props.ticket.pnr
                 }">Confirm Email</a></td> 
                 <tr> 
