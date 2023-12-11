@@ -5,6 +5,7 @@ const emailHelper = require("../helper/email.helper");
 const validation = require("../helper/verify.helper");
 const ticketBooking = require("../documents");
 var pdf = require("html-pdf-node");
+const puppeteer = require("puppeteer");
 
 module.exports.addBooking = (req, res) => {
   bookingModel
@@ -321,11 +322,19 @@ module.exports.sendEmail = async (req, res) => {
      </div>
     </div>`;
   const pdfOptions = { format: "A4" };
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
   try {
-    const pdfBuffer = await pdf.generatePdf(
-      { content: ticketBooking(req.body) },
-      pdfOptions
-    );
+    // const pdfBuffer = await pdf.generatePdf(
+    //   { content: ticketBooking(req.body) },
+    //   pdfOptions
+    // );
+    await page.setContent(ticketBooking(req.body));
+    // Tạo PDF từ trang
+    const pdfBuffer = await page.pdf({ format: "A4" });
+
+    // Đóng trình duyệt
+    await browser.close();
     const email = req.body.props.email || req.body.props.ticket.email;
     if (validation.emailValidation(email)) {
       emailHelper.sendEmail(email, "Xác nhận đặt chỗ", emailMessage, pdfBuffer);
