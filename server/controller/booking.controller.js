@@ -240,7 +240,6 @@ module.exports.verifyUser = async (req, res) => {
     });
 };
 module.exports.sendEmail = async (req, res) => {
-  console.log(req.body.props.ticket.email);
   let emailMessage = `<div style="font-family:sans-serif"><div class="adM"> 
       </div><table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0" style="background:#e6eaed"> 
        <tbody>
