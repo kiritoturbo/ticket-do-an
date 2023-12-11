@@ -9,10 +9,6 @@ const puppeteer = require("puppeteer-core");
 const chromium = require("@sparticuz/chromium");
 chromium.setHeadlessMode = true;
 chromium.setGraphicsMode = false;
-// Optional: Load any fonts you need. Open Sans is included by default in AWS Lambda instances
-await chromium.font(
-  "https://raw.githack.com/googlei18n/noto-emoji/master/fonts/NotoColorEmoji.ttf"
-);
 
 module.exports.addBooking = (req, res) => {
   bookingModel
