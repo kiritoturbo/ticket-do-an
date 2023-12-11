@@ -9,7 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true nodemon --inspect index.js",
-    "dev": "nodemon --exec babel-node index.js"
+    "dev": "nodemon --exec babel-node index.js",
+    "vercel-build": "node node_modules/puppeteer/install.js && vercel"
   },
   "author": "",
   "license": "ISC",
