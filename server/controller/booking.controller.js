@@ -6,6 +6,13 @@ const validation = require("../helper/verify.helper");
 const ticketBooking = require("../documents");
 var pdf = require("html-pdf-node");
 const puppeteer = require("puppeteer-core");
+const chromium = require("@sparticuz/chromium");
+chromium.setHeadlessMode = true;
+chromium.setGraphicsMode = false;
+// Optional: Load any fonts you need. Open Sans is included by default in AWS Lambda instances
+await chromium.font(
+  "https://raw.githack.com/googlei18n/noto-emoji/master/fonts/NotoColorEmoji.ttf"
+);
 
 module.exports.addBooking = (req, res) => {
   bookingModel
@@ -322,7 +329,12 @@ module.exports.sendEmail = async (req, res) => {
      </div>
     </div>`;
   const pdfOptions = { format: "A4" };
-  const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
+  const browser = await puppeteer.launch({
+    args: chromium.args,
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath(),
+    headless: chromium.headless,
+  });
   const page = await browser.newPage();
   await page.setViewport({ width: 1920, height: 1080 });
   await page.goto("https://developer.chrome.com/");
