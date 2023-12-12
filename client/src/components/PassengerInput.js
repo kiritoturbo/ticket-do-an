@@ -35,17 +35,21 @@ const countryOptions = [
 ];
 
 const renderTextField = ({ input, placeholder, label, meta }) => {
+  console.log(meta.error);
   return (
     <Form.Field className={`${meta.touched && meta.invalid ? "error" : ""}`}>
       <label>{label}</label>
       <Input type="text" {...input} placeholder={placeholder} />
+      {meta.touched && meta.error && (
+        <div className="ui pointing basic label">{meta.error}</div>
+      )}
     </Form.Field>
   );
 };
 
-const renderSelectField = ({ input, label, placeholder }) => {
+const renderSelectField = ({ input, label, placeholder, meta, options }) => {
   return (
-    <Form.Field>
+    <Form.Field className={`${meta.touched && meta.invalid ? "error" : ""}`}>
       <label>{label}</label>
       <Dropdown
         selection
@@ -56,12 +60,15 @@ const renderSelectField = ({ input, label, placeholder }) => {
         search
         options={countryOptions}
       />
+      {meta.touched && meta.error && (
+        <div className="ui pointing basic label">{meta.error}</div>
+      )}
     </Form.Field>
   );
 };
 
 const renderDatePicker = ({ input, label, meta }) => {
-  console.log(input);
+  console.log(meta.touched);
   return (
     <Form.Field
       className={`customDatePickerWidth ${
@@ -72,8 +79,14 @@ const renderDatePicker = ({ input, label, meta }) => {
       <DatePicker
         selected={input.value}
         onChange={input.onChange}
+        showYearDropdown
+        dateFormat="dd/MM/yyyy"
         placeholderText="Ngày sinh"
       />
+      {meta.touched ||
+        (meta.error && (
+          <div className="ui pointing basic label">{meta.error}</div>
+        ))}
     </Form.Field>
   );
 };
@@ -160,6 +173,24 @@ const validate = (formValues) => {
       errors[field] = "Không bỏ trống.";
     }
   });
+  // Validate email format
+  if (formValues.email && !/^[^\s@]+@gmail\.com$/.test(formValues.email)) {
+    errors.email = "Email phải kết thúc bằng '@gmail.com'.";
+  }
+  console.log(formValues["birthDay"]);
+  // Check if birthDay is provided
+  if (formValues["birthDay"]) {
+    // Calculate age based on the birthDay
+    const birthDate = new Date(formValues["birthDay"]);
+    const currentDate = new Date();
+    const age = currentDate.getFullYear() - birthDate.getFullYear();
+    console.log(currentDate.getFullYear());
+    console.log(birthDate.getFullYear());
+    // Check if the age is less than 18
+    if (age < 18) {
+      errors["birthDay"] = "Phải lớn hơn 18 tuổi.";
+    }
+  }
   return errors;
 };
 

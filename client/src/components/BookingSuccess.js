@@ -2,9 +2,44 @@ import React from "react";
 import "./bookingSuccess.css";
 import { connect } from "react-redux";
 import { format } from "date-fns";
-
+import { saveAs } from "file-saver";
+import { QRCodeSVG } from "qrcode.react";
+import axios from "axios";
+import { toast } from "react-toastify";
+import Booking from "../api/Booking";
 function BookingSuccess(props) {
+  console.log(props);
   const { ticket, flight, returnFlight } = props;
+  const qrcode = `Mã đặt vé: ${ticket.pnr}| Tên người đặt : ${
+    ticket.buyerName
+  } | Tổng tiền: ${ticket.totalPrice.toLocaleString("it-IT", {
+    style: "currency",
+    currency: "VND",
+  })}`;
+  const downloadQRCode = () => {
+    console.log(document.querySelector("#qrcode"));
+    // Lấy đối tượng SVG của QR code từ useRef
+    const svg = document.querySelector("#qrcode");
+
+    // Chuyển đổi SVG thành chuỗi để tạo Blob
+    const svgString = new XMLSerializer().serializeToString(svg);
+    const blob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
+
+    try {
+      // Sử dụng thư viện file-saver để download
+      saveAs(blob, "qrcode.svg");
+      toast.success("Tải mã QRcode thành công");
+    } catch (error) {
+      toast.error(error);
+    }
+  };
+  const handleSendEmail = () => {
+    Booking.post("/booking/email", { props }).then((res) => {
+      console.log(res);
+      toast.success(`Đã gửi tới email ${res.data}`);
+      return;
+    });
+  };
   return (
     <div className="bookingSuccess">
       <div className="ui card ticket">
@@ -108,6 +143,24 @@ function BookingSuccess(props) {
             </div>
           </div>
         </div>
+        <div className="flex justify-center mb-3">
+          <QRCodeSVG size={128} id="qrcode" value={qrcode} bgColor="#0000" />
+        </div>
+      </div>
+      <div className="flex items-center gap-5 w-full justify-center">
+        <button
+          onClick={handleSendEmail}
+          className="btnSearchForm font-bold font-[jambonoMedium] text-[#333] select-none text-[16px] w-full h-[39px] max-w-[200px] rounded-[10px] bg-gradient-to-r from-[#F9A51A] to-[#FFDD00] css-jh47zj-MuiButtonBase-root-MuiButton-root"
+        >
+          Gửi Email
+        </button>
+
+        <button
+          onClick={downloadQRCode}
+          className="btnSearchForm font-bold font-[jambonoMedium] text-[#333] select-none text-[16px] w-full h-[39px] max-w-[200px] rounded-[10px] bg-gradient-to-r from-[#F9A51A] to-[#FFDD00] css-jh47zj-MuiButtonBase-root-MuiButton-root"
+        >
+          Download QR Code
+        </button>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import Booking from "../api/Booking";
 import { Form, Dropdown, Input } from "semantic-ui-react";
 import axios from "axios";
 const PaymentForm = (props) => {
-  //   console.log(props);
+  // console.log(props.selectedPaymentMethod);
   const navigate = useNavigate();
   const [bankCode, setBankCode] = useState(""); // Thêm trường bankCode
   const onSubmit = async (formValues) => {
@@ -34,6 +34,8 @@ const PaymentForm = (props) => {
         dateOfBirth: passenger.birthDay,
         nationality: passenger.country,
         status: true,
+        paymentMethod: props.selectedPaymentMethod,
+        verifyUser: false,
         ticketInfos: [
           {
             flightId: selectedFlight._id,
@@ -70,6 +72,8 @@ const PaymentForm = (props) => {
         dateOfBirth: passenger.birthDay,
         nationality: passenger.country,
         status: true,
+        verifyUser: false,
+        paymentMethod: props.selectedPaymentMethod,
         ticketInfos: [
           {
             flightId: selectedFlight._id,

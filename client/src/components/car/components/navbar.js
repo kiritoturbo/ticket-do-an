@@ -20,7 +20,7 @@ export default function NavbarCar() {
       >
         <ion-icon name="grid-outline" color="white" className="ico"></ion-icon>
       </div>
-      <div className="navbarCar">
+      <div className="navbarCar" onClick={() => setClicked(!clicked)}>
         <p className="title">
           <img src="assets/vj-white-logo.f34b6108.svg" alt="" />
         </p>

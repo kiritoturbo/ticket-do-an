@@ -220,12 +220,12 @@ function NavBar() {
                     >
                       Đăng xuất
                     </button>
-                    {clicked ? (
+                    {/* {clicked ? (
                       <div
                         className="clickablearea"
                         onClick={() => setClicked(!clicked)}
                       />
-                    ) : null}
+                    ) : null} */}
                   </>
                 ) : (
                   <>

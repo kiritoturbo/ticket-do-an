@@ -5,6 +5,7 @@ import {
   faPerson,
   faPlane,
   faTaxi,
+  faMapPin,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./header.css";
@@ -78,6 +79,12 @@ const Header = ({ type }) => {
             <FontAwesomeIcon icon={faCar} />
             <Link to="/car/map-address">
               <span>Car rentals</span>
+            </Link>
+          </div>
+          <div className="headerListItem">
+            <FontAwesomeIcon icon={faMapPin} />
+            <Link to="/pin">
+              <span>Pin Comment</span>
             </Link>
           </div>
           {/* <div className="headerListItem">

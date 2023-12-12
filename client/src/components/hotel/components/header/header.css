@@ -127,3 +127,9 @@
 .optionCounterButton:disabled {
   cursor: not-allowed;
 }
+
+@media (max-width:426px) {
+  .headerList {
+    gap: 20px;
+  }
+}

@@ -33,8 +33,9 @@
   }
 
   .headerSearchHotel {
-    bottom: -100%;
+    bottom: -50%;
     z-index: 1000;
+    transform: translateY(50%);
   }
 
   .homeContainer {

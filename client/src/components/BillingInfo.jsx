@@ -9,6 +9,7 @@ import { createTicket } from "../actions";
 import Booking from "../api/Booking";
 import "./billingInfo.css";
 import PaymentForm from "./paymentVnpay";
+import axios from "axios";
 
 const cardOptions = [
   { value: "Visa", text: "Visa" },
@@ -43,6 +44,7 @@ const renderTextField = ({ input, placeholder, label, meta }) => {
 function BillingInfo(props) {
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState("creditCard");
+  // console.log(selectedPaymentMethod);
 
   const handlePaymentMethodChange = (method) => {
     setSelectedPaymentMethod(method);
@@ -64,6 +66,8 @@ function BillingInfo(props) {
         dateOfBirth: passenger.birthDay,
         nationality: passenger.country,
         status: true,
+        paymentMethod: selectedPaymentMethod,
+        verifyUser: false,
         ticketInfos: [
           {
             flightId: selectedFlight._id,
@@ -96,6 +100,8 @@ function BillingInfo(props) {
         dateOfBirth: passenger.birthDay,
         nationality: passenger.country,
         status: true,
+        verifyUser: false,
+        paymentMethod: selectedPaymentMethod,
         ticketInfos: [
           {
             flightId: selectedFlight._id,
@@ -246,7 +252,7 @@ function BillingInfo(props) {
               </div>
             </Form>
           ) : (
-            <PaymentForm />
+            <PaymentForm selectedPaymentMethod={selectedPaymentMethod} />
           )}
         </div>
         <div className="five wide column rightService">

@@ -17,6 +17,7 @@ import useFetch from "../../../../hooks/useFetch";
 import { SearchContext } from "../../../../context/SearchContext";
 import { AuthContext } from "../../../../context/AuthContext";
 import { useSelector } from "react-redux";
+import { CommentFacebook } from "../../../CommentFacebook";
 
 const Hotel = () => {
   const location = useLocation();
@@ -78,7 +79,7 @@ const Hotel = () => {
             <div className="slider">
               <FontAwesomeIcon
                 icon={faCircleXmark}
-                className="close"
+                className="closeHotel"
                 onClick={() => setOpen(false)}
               />
               <FontAwesomeIcon
@@ -144,7 +145,12 @@ const Hotel = () => {
                 <button onClick={handleClick}>Reserve or Book Now!</button>
               </div>
             </div>
+            <CommentFacebook
+              link="https://ticket-truong-client.web.app/"
+              title="Bình luận"
+            />
           </div>
+
           <MailList />
           <Footer />
         </div>

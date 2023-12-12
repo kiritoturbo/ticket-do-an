@@ -25,7 +25,7 @@ import CommentList from "../../components/CommentList";
 import Booking from "../../api/Booking";
 import { io } from "socket.io-client";
 
-const socket = io("https://ticket-do-an.vercel.app", {
+const socket = io("/", {
   reconnection: true,
 });
 
@@ -80,8 +80,8 @@ const SinglePost = () => {
     const refreshToken = window.localStorage.getItem("refreshtoken");
 
     try {
-      const { data } = await Booking.put(
-        `/blog/comment/post/${id}`,
+      const { data } = await axios.put(
+        `http://localhost:2020/blog/comment/post/${id}`,
         { comment },
         {
           headers: {
@@ -114,8 +114,8 @@ const SinglePost = () => {
           ] = `Bearer ${refreshData.data.accessToken}`;
 
           // Retry the comment post request with the new token
-          const { data } = await Booking.put(
-            `/blog/comment/post/${id}`,
+          const { data } = await axios.put(
+            `http://localhost:2020/blog/comment/post/${id}`,
             { comment },
             {
               headers: {
@@ -196,7 +196,7 @@ const SinglePost = () => {
                   ""
                 ) : (
                   <Typography variant="h5" sx={{ pt: 3, mb: 2 }}>
-                    Comments:
+                    Bình luận:
                   </Typography>
                 )}
 
@@ -211,7 +211,7 @@ const SinglePost = () => {
                 {userInfo ? (
                   <>
                     <Box sx={{ pt: 1, pl: 3, pb: 3, bgcolor: "#fafafa" }}>
-                      <h2>Add your comment here!</h2>
+                      <h2>Thêm bình luận</h2>
                       <form onSubmit={addComment}>
                         <TextareaAutosize
                           onChange={(e) => setComment(e.target.value)}
@@ -223,7 +223,7 @@ const SinglePost = () => {
                         />
                         <Box sx={{ pt: 1 }}>
                           <Button type="submit" variant="contained">
-                            Comment
+                            Bình luận
                           </Button>
                         </Box>
                       </form>

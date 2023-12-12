@@ -6,7 +6,7 @@ import moment from "moment";
 import Loader from "../../components/Loader";
 import Booking from "../../api/Booking";
 import { io } from "socket.io-client";
-const socket = io("https://ticket-do-an.vercel.app", {
+const socket = io("/", {
   reconnection: true,
 });
 
@@ -70,18 +70,27 @@ export const PostBlog = () => {
   return (
     <>
       <Box sx={{ minHeight: "100vh" }}>
-        <Container sx={{ pt: 5, pb: 5, minHeight: "83vh" }}>
+        <Container sx={{ pt: 5, pb: 5, paddingLeft: 0, minHeight: "83vh" }}>
           <Box sx={{ flexGrow: 1 }}>
             <Grid
               container
-              spacing={{ xs: 2, md: 3 }}
+              // spacing={{ xs: 2, md: 3 }}
+              spacing={{ xs: 2, md: 4 }}
               columns={{ xs: 4, sm: 8, md: 12 }}
+              justifyContent="space-between"
             >
               {loading ? (
                 <Loader />
               ) : (
                 uiPosts.map((post, index) => (
-                  <Grid item xs={2} sm={4} md={4} key={index}>
+                  <Grid
+                    item
+                    xs={2}
+                    sm={4}
+                    md={4}
+                    key={index}
+                    sx={{ width: "100%", margin: 0 }}
+                  >
                     <PostCard
                       id={post._id}
                       title={post.title}

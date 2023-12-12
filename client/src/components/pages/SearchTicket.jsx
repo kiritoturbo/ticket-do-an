@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
 import searchBooking from "../../api/searchBooking";
 import SearchImg from "../../public/images/searchBooking.jpg";
-
+import axios from "axios";
 const renderTextField = ({ input, label, meta }) => {
   return (
     <TextField
@@ -27,7 +27,7 @@ function SearchTicket(props) {
   const onSubmit = (formValues) => {
     searchBooking
       .get(
-        `booking/pnr/${formValues.pnr}?fullname=${
+        `/booking/pnr/${formValues.pnr}?fullname=${
           formValues.firstName + " " + formValues.lastName
         }`
       )
@@ -90,7 +90,7 @@ function SearchTicket(props) {
                 </button>
               </form>
               {booking && !booking.error && (
-                <div className="result">
+                <div className="result mb-5">
                   <div className="content">
                     <h4 className="ui sub header">Thông tin đặt vé</h4>
                     <div className="ui small feed ticket-info">

@@ -3,6 +3,8 @@ import "../car/auth.css";
 import { Link, useNavigate } from "react-router-dom";
 import { signupUser } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 export default function SignupFlight() {
   const [email, setEmail] = useState("");
@@ -17,18 +19,32 @@ export default function SignupFlight() {
   if (email != "" && password != "") {
     enable = true;
   }
-
+  // const validationSchema = Yup.object().shape({
+  //   email: Yup.string().email('Invalid email').required('Email is required'),
+  //   password: Yup.string().min(8, 'Password must be at least 8 characters').required('Password is required'),
+  // });
   const passCheck = (password) => {
-    if (email != "" && password != "") {
-      if (password.length > 5) {
-        setErr("");
-        dispatch(signupUser({ email, password }));
-      } else {
-        setErr("password must be 8 characters long");
-      }
+    const emailRegex = /\S+@gmail\.com$/;
+    if (!email || !password) {
+      setErr("Không được để trống");
+    } else if (!emailRegex.test(email)) {
+      setErr("Email không hợp lệ, phải kết thúc bằng @gmail.com");
+    } else if (password.length < 6) {
+      setErr("Mật khẩu phải có 6 kí tự");
     } else {
-      setErr("Fields cannot be empty");
+      setErr("");
+      dispatch(signupUser({ email, password }));
     }
+    // if (email != "" && password != "") {
+    //   if (password.length > 5) {
+    //     setErr("");
+    //     dispatch(signupUser({ email, password }));
+    //   } else {
+    //     setErr("password must be 8 characters long");
+    //   }
+    // } else {
+    //   setErr("Fields cannot be empty");
+    // }
   };
 
   const { msg, err } = useSelector((state) => state.authReducer);

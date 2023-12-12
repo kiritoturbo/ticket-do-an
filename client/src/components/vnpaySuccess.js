@@ -4,6 +4,11 @@ import { connect } from "react-redux";
 import { format } from "date-fns";
 import searchBooking from "../api/searchBooking";
 import axios from "axios";
+import { QRCodeSVG } from "qrcode.react";
+import { useRef } from "react";
+import { saveAs } from "file-saver";
+import { toast } from "react-toastify";
+import Booking from "../api/Booking";
 
 function VnPaySuccess() {
   console.log("this is vnpaysuccess");
@@ -59,6 +64,56 @@ function VnPaySuccess() {
   }, [props.pnr, props.buyerName]); // Chạy effect này khi props.pnr hoặc props.buyerName thay đổi
 
   console.log(props);
+  async function checkEmailValidity(email) {
+    const apiKey = "at_dkZaCaXnR2pYYHrk6QS0qrQWrgASn"; // Thay thế bằng khóa API của bạn
+    const apiUrl = `https://emailverification.whoisxmlapi.com/api/v3?apiKey=at_dkZaCaXnR2pYYHrk6QS0qrQWrgASn&emailAddress=${email}`;
+    try {
+      const response = await axios.get(apiUrl);
+      const result = response.data;
+
+      // Kiểm tra kết quả từ API
+      if (result.formatCheck === "true" && result.smtpCheck === "true") {
+        console.log(`${email} là địa chỉ email hợp lệ.`);
+      } else {
+        console.log(`${email} không phải là địa chỉ email hợp lệ.`);
+      }
+    } catch (error) {
+      console.error("Lỗi khi kiểm tra địa chỉ email:", error.message);
+    }
+  }
+
+  const handleSendEmail = () => {
+    // checkEmailValidity("manhtruong2001nt@gmail.com");
+    Booking.post("/booking/email", { props })
+      .then((res) => {
+        console.log(res);
+        toast.success(`Đã gửi tới email ${res.data}`);
+        return;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const qrcode = `Mã đặt vé: ${props.pnr}| Tên người đặt : ${props.buyerName} | Tổng tiền: ${props.totalPrice}
+   `;
+
+  const downloadQRCode = () => {
+    console.log(document.querySelector("#qrcode"));
+    // Lấy đối tượng SVG của QR code từ useRef
+    const svg = document.querySelector("#qrcode");
+
+    // Chuyển đổi SVG thành chuỗi để tạo Blob
+    const svgString = new XMLSerializer().serializeToString(svg);
+    const blob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
+
+    try {
+      // Sử dụng thư viện file-saver để download
+      saveAs(blob, "qrcode.svg");
+      toast.success("Tải mã QRcode thành công");
+    } catch (error) {
+      toast.error(error);
+    }
+  };
   return (
     <div className="bookingSuccess">
       <div className="ui card ticket">
@@ -153,6 +208,24 @@ function VnPaySuccess() {
             </div>
           </div>
         </div>
+        <div className="flex justify-center mb-3">
+          <QRCodeSVG size={128} id="qrcode" value={qrcode} bgColor="#0000" />
+        </div>
+      </div>
+      <div className="flex items-center gap-5 w-full justify-center">
+        <button
+          onClick={handleSendEmail}
+          className="btnSearchForm font-bold font-[jambonoMedium] text-[#333] select-none text-[16px] w-full h-[39px] max-w-[200px] rounded-[10px] bg-gradient-to-r from-[#F9A51A] to-[#FFDD00] css-jh47zj-MuiButtonBase-root-MuiButton-root"
+        >
+          Gửi Email
+        </button>
+
+        <button
+          onClick={downloadQRCode}
+          className="btnSearchForm font-bold font-[jambonoMedium] text-[#333] select-none text-[16px] w-full h-[39px] max-w-[200px] rounded-[10px] bg-gradient-to-r from-[#F9A51A] to-[#FFDD00] css-jh47zj-MuiButtonBase-root-MuiButton-root"
+        >
+          Download QR Code
+        </button>
       </div>
     </div>
   );

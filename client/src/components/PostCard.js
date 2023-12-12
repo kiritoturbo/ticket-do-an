@@ -41,8 +41,8 @@ const PostCard = ({
 
     const makeLikeRequest = async (accessToken) => {
       try {
-        const { data } = await Booking.put(
-          `/blog/addlike/post/${id}`,
+        const { data } = await axios.put(
+          `http://localhost:2020/blog/addlike/post/${id}`,
           {},
           {
             headers: {
@@ -96,8 +96,8 @@ const PostCard = ({
 
     const makeLikeRequest = async (accessToken) => {
       try {
-        const { data } = await Booking.put(
-          `/blog/removelike/post/${id}`,
+        const { data } = await axios.put(
+          `http://localhost:2020/blog/removelike/post/${id}`,
           {},
           {
             headers: {
@@ -144,7 +144,12 @@ const PostCard = ({
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card
+      sx={{
+        // maxWidth: 345,
+        width: "100%",
+      }}
+    >
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">

@@ -29,8 +29,10 @@ import moment from "moment-timezone";
 import VnpaySuccess from "./components/vnpaySuccess";
 import { SingleBanner } from "./components/singleBanner";
 import SinglePost from "./components/pages/SinglePost";
+import Pin from "./components/hotel/pages/Pin/Pin";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import VerifyUser from "./components/verifyUser";
 function App(props) {
   // Đặt múi giờ cho ứng dụng
   // moment.tz.setDefault("Asia/Ho_Chi_Minh");
@@ -61,6 +63,7 @@ function App(props) {
                   <Route path="ordervnpay-success" element={<VnpaySuccess />} />
                   <Route path="banner/post/:id" element={<SingleBanner />} />
                   <Route path="blog/post/:id" element={<SinglePost />} />
+                  <Route path="verifyUser/:id" element={<VerifyUser />} />
                 </Routes>
                 <Footer />
               </>
@@ -68,6 +71,7 @@ function App(props) {
           />
           <Route path="select-hotel" element={<HomeHotel />} />
           <Route path="hotels" element={<ListHotel />} />
+          <Route path="pin" element={<Pin />} />
           <Route path="hotels/:id" element={<Hotel />} />
           <Route
             path="/car/*"

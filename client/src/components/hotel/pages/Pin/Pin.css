@@ -1,0 +1,107 @@
+.cardPin {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.cardPin label {
+    width: max-content;
+    color: tomato;
+    font-size: 13px;
+    border-bottom: 0.5px solid tomato;
+    margin: 3px 0;
+}
+
+.mapboxgl-popup-close-button {
+    font-size: 32px;
+}
+
+.cardPin .desc {
+    font-size: 14px;
+}
+
+.cardPin .star {
+    color: gold;
+}
+
+.cardPin .username {
+    font-size: 14px;
+}
+
+.cardPin .datePin {
+    font-size: 12px;
+}
+
+.formPin {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: rgb(88, 87, 87);
+}
+
+.formPin input {
+    border: none;
+    border-bottom: 1px solid gray;
+}
+
+.formPin input::placeholder,
+.formPin textarea::placeholder {
+    font-size: 12px;
+    color: rgb(185, 184, 184);
+}
+
+/* input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+} */
+/* 
+textarea {
+    border: none;
+    border-bottom: 1px solid gray;
+} */
+
+.submitButtonPin {
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: tomato;
+    cursor: pointer;
+}
+
+.buttons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.formPin .button {
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* .button:focus {
+    outline: none;
+} */
+
+/* .logout {
+    background-color: tomato;
+}
+
+.login {
+    background-color: teal;
+    margin-right: 10px;
+}
+
+.register {
+    background-color: slateblue;
+} */
