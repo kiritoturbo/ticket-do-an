@@ -11,6 +11,7 @@ import Map, {
   Popup,
 } from "react-map-gl";
 import { Room, Star, StarBorder } from "@mui/icons-material";
+import Geocoder from "./Geocoder";
 
 const Pin = () => {
   const myStorage = window.localStorage;
@@ -100,8 +101,12 @@ const Pin = () => {
           onDblClick={currentUsername && handleAddClick}
         >
           <NavigationControl position="top-right" />
-          <GeolocateControl position="top-right" />
-
+          {/* NavigationControl là nút cộng trừ để phóng to thu nhỏ  */}
+          <GeolocateControl position="top-right" showUserLocation={true} auto />
+          {/* GeolacateControl để lấy vị trí hiện tại 
+          showUserLocation để hiển thị biểu tượng vị trí của người dùng và 
+          auto để tự động lấy vị trí người dùng khi trang web được tải. */}
+          <Geocoder />
           {pins.map((p) => (
             <>
               <Marker
