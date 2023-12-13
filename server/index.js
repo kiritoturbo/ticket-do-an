@@ -18,6 +18,7 @@ const vnpay = require("./route/vnpay.router");
 const userRoutes = require("./route/userRoutes");
 const blogRoute = require("./route/blogpost.route");
 const bannerRoute = require("./route/banner.route");
+const pinRoute = require("./route/pins");
 const moment = require("moment-timezone");
 const { port, mongoUrl, corsOrigin } = key;
 
@@ -72,6 +73,7 @@ app.use("/order", vnpay);
 
 app.use("/blog", blogRoute);
 app.use("/banner", bannerRoute);
+app.use("/pin", pinRoute);
 
 app.use(function (req, res) {
   res.status(404).json({ errors: ["Không tìm thấy route"] });

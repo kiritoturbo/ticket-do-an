@@ -15,7 +15,7 @@ module.exports = function AuthMiddleWare(req, res, next) {
           .status(400)
           .json({ err: "Invalid Credintials please try logging in again" });
       else {
-        req.body.token = suc.data;
+        req.body.token = suc.data; //tạo thêm biến mới là token nhận giá trị và gửi qua next
         next();
       }
     });
