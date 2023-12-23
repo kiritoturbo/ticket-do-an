@@ -12,6 +12,12 @@ router.post("/register", userRegistaion);
 router.post("/login", [
   VerifyUserMiddleware.isPasswordAndUserMatch,
   //   isAuthenticated,
+  // isAdmin,
+  controller.logIn,
+]);
+router.post("/login/admin", [
+  VerifyUserMiddleware.isPasswordAndUserMatch,
+  //   isAuthenticated,
   isAdmin,
   controller.logIn,
 ]);
