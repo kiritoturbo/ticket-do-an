@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { nanoid } = require("nanoid");
+const moment = require("moment");
 
 const Schema = mongoose.Schema;
 
@@ -23,6 +24,7 @@ const bookingSchema = new Schema(
     },
     status: Boolean,
     verifyUser: Boolean,
+    noteAdmin: String,
   },
   { timestamps: true }
 );
@@ -181,11 +183,185 @@ module.exports = {
           status: { $first: "$status" },
           verifyUser: { $first: "$verifyUser" },
           tickets: { $push: "$tickets" },
+          noteAdmin: { $first: "$noteAdmin" },
           updatedAt: { $first: "$updatedAt" },
           createdAt: { $first: "$createdAt" },
         },
       },
     ];
     return bookingModel.aggregate(agg);
+  },
+  getTicketsCountByDay: async (date) => {
+    try {
+      // Thiết lập thời điểm bắt đầu và kết thúc của ngày
+      const startOfDay = moment(date).startOf("day").toDate();
+      const endOfDay = moment(date).endOf("day").toDate();
+
+      // Sử dụng aggregation để đếm số vé đã đặt trong ngày đã chỉ định
+      const result = await bookingModel.aggregate([
+        {
+          $match: {
+            createdAt: { $gte: startOfDay, $lte: endOfDay },
+          },
+        },
+        // {
+        //   $unwind: "$tickets",
+        // },
+        {
+          $group: {
+            _id: "_id", // Thêm _id vào để giữ nguyên _id của booking
+            totalTickets: { $sum: 1 },
+          },
+        },
+      ]);
+
+      if (result.length > 0) {
+        return result[0].totalTickets;
+      } else {
+        return 0; // No tickets booked on the specified day
+      }
+    } catch (error) {
+      console.error("Error retrieving ticket count:", error);
+      throw error;
+    }
+  },
+  getTicketsCountByMonth: async (month, year) => {
+    try {
+      // Thiết lập thời điểm bắt đầu và kết thúc của tháng
+      const startOfMonth = moment({ year, month: month - 1 })
+        .startOf("month")
+        .toDate();
+      const endOfMonth = moment({ year, month: month - 1 })
+        .endOf("month")
+        .toDate();
+
+      // Sử dụng aggregation để đếm số vé đã đặt trong tháng đã chỉ định
+      const result = await bookingModel.aggregate([
+        {
+          $match: {
+            createdAt: { $gte: startOfMonth, $lte: endOfMonth },
+          },
+        },
+        // {
+        //   $unwind: "$tickets",
+        // },
+        {
+          $group: {
+            _id: "", // Thêm _id vào để giữ nguyên _id của booking
+            totalTickets: { $sum: 1 },
+          },
+        },
+      ]);
+
+      if (result.length > 0) {
+        return result[0].totalTickets;
+      } else {
+        return 0; // Không có vé nào được đặt trong tháng đã chỉ định
+      }
+    } catch (error) {
+      console.error("Lỗi khi lấy số liệu vé theo tháng:", error);
+      throw error;
+    }
+  },
+
+  getTicketsCountByYear: async (year) => {
+    try {
+      // Thiết lập thời điểm bắt đầu và kết thúc của năm
+      const startOfYear = moment({ year }).startOf("year").toDate();
+      const endOfYear = moment({ year }).endOf("year").toDate();
+
+      // Sử dụng aggregation để đếm số vé đã đặt trong năm đã chỉ định
+      const result = await bookingModel.aggregate([
+        {
+          $match: {
+            createdAt: { $gte: startOfYear, $lte: endOfYear },
+          },
+        },
+        // {
+        //   $unwind: "$tickets",
+        // },
+        {
+          $group: {
+            _id: "$bookingId", // Thêm _id vào để giữ nguyên _id của booking
+            totalTickets: { $sum: 1 },
+          },
+        },
+      ]);
+      if (result.length > 0) {
+        return result[0].totalTickets;
+      } else {
+        return 0; // Không có vé nào được đặt trong năm đã chỉ định
+      }
+    } catch (error) {
+      console.error("Lỗi khi lấy số liệu vé theo năm:", error);
+      throw error;
+    }
+  },
+
+  getTotalRevenueByDay: async (date) => {
+    try {
+      // Thiết lập thời điểm bắt đầu và kết thúc của ngày
+      const startOfDay = moment(date).startOf("day").toDate();
+      const endOfDay = moment(date).endOf("day").toDate();
+
+      // Sử dụng aggregation để tính tổng số tiền của các vé đã đặt trong ngày đã chỉ định
+      const result = await bookingModel.aggregate([
+        {
+          $match: {
+            createdAt: { $gte: startOfDay, $lte: endOfDay },
+          },
+        },
+        {
+          $group: {
+            _id: null, // Thêm _id vào để giữ nguyên _id của booking
+            totalRevenue: { $sum: "$totalPrice" },
+          },
+        },
+      ]);
+
+      if (result.length > 0) {
+        return result[0].totalRevenue;
+      } else {
+        return 0; // Không có vé nào được đặt trong ngày đã chỉ định
+      }
+    } catch (error) {
+      console.error("Lỗi khi lấy tổng số tiền vé trong ngày:", error);
+      throw error;
+    }
+  },
+  getTotalRevenueByMonth: async (month, year) => {
+    try {
+      // Thiết lập thời điểm bắt đầu và kết thúc của tháng
+      const startOfMonth = moment({ year, month: month - 1 })
+        .startOf("month")
+        .toDate();
+      const endOfMonth = moment({ year, month: month - 1 })
+        .endOf("month")
+        .toDate();
+
+      // Sử dụng aggregation để tính tổng số tiền của tất cả các đặt vé trong tháng đã chỉ định
+      const result = await bookingModel.aggregate([
+        {
+          $match: {
+            createdAt: { $gte: startOfMonth, $lte: endOfMonth },
+          },
+        },
+        {
+          $group: {
+            _id: "", // Thêm _id vào để giữ nguyên _id của booking
+            totalRevenue: { $sum: "$totalPrice" }, // Sử dụng trường totalPrice từ mỗi đặt vé
+          },
+        },
+      ]);
+
+      if (result.length > 0) {
+        return result[0].totalRevenue;
+      } else {
+        return 0; // Không có đặt vé nào trong tháng đã chỉ định
+      }
+    } catch (error) {
+      console.error("Lỗi khi lấy tổng số tiền vé trong tháng:", error);
+      throw error;
+    }
   },
 };

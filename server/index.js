@@ -17,8 +17,10 @@ const roomRouter = require("./route/rooms");
 const vnpay = require("./route/vnpay.router");
 const userRoutes = require("./route/userRoutes");
 const blogRoute = require("./route/blogpost.route");
+const carRoute = require("./route/carpost.route");
 const bannerRoute = require("./route/banner.route");
 const pinRoute = require("./route/pins");
+const agenciesRoute = require("./route/agencies.route");
 const moment = require("moment-timezone");
 const { port, mongoUrl, corsOrigin } = key;
 
@@ -72,8 +74,10 @@ app.use("/rooms", roomRouter);
 app.use("/order", vnpay);
 
 app.use("/blog", blogRoute);
+app.use("/car", carRoute);
 app.use("/banner", bannerRoute);
 app.use("/pin", pinRoute);
+app.use("/agen", agenciesRoute);
 
 app.use(function (req, res) {
   res.status(404).json({ errors: ["Không tìm thấy route"] });

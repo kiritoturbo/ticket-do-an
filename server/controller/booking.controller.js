@@ -289,9 +289,14 @@ module.exports.sendEmailll = async (req, res) => {
                     req.body.props.pnr || req.body.props.ticket.pnr
                   }</span></p> </td> 
                 </tr> 
-                <div style="width:100%;height:16px;display:block"></div> <p style="line-height:25px;font-size:16px;padding:0px;margin:0px"> Nhấp vào liên kết sau để xác nhận email của bạn: <a href="http://localhost:3000/verifyUser/${
-                  req.body.props.pnr || req.body.props.ticket.pnr
-                }">Confirm Email</a></td> 
+                <div style="width:100%;height:16px;display:block"></div> 
+                  <p style="line-height:25px;font-size:16px;padding:0px;margin:0px">
+                      Nhấp vào liên kết sau để xác nhận email của bạn: 
+                      <a href="http://localhost:3000/verifyUser/${
+                        req.body.props.pnr || req.body.props.ticket.pnr
+                      }">Confirm Email</a>
+                  </p>
+                </td> 
                 <tr> 
                  <td align="center" valign="top"> 
                   
@@ -378,5 +383,70 @@ module.exports.searchByFlight = (req, res) => {
     })
     .catch((e) => {
       res.status(500).json(e);
+    });
+};
+//lấy vé theo ngày
+module.exports.getTicketCountByDay = (req, res) => {
+  const requestedDate = req.query.date ? new Date(req.query.date) : new Date();
+  bookingModel
+    .getTicketsCountByDay(requestedDate)
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((e) => {
+      res.status(500).json(e);
+    });
+};
+//lấy vé theo tháng
+module.exports.getTicketCountByMonth = (req, res) => {
+  // req.param là biến từ route mình định nghĩa
+  const { month, year } = req.query; // Giả sử tham số được truyền qua là một phần của URL
+  bookingModel
+    .getTicketsCountByMonth(month, year)
+    .then((result) => {
+      res.status(200).json({ totalTickets: result });
+    })
+    .catch((error) => {
+      console.error("Lỗi khi lấy số liệu vé theo tháng:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    });
+};
+//lấy số vé theo năm
+module.exports.getTicketCountByYear = (req, res) => {
+  const { year } = req.query; // Giả sử tham số được truyền qua là một phần của URL
+  bookingModel
+    .getTicketsCountByYear(year)
+    .then((result) => {
+      res.status(200).json({ totalTickets: result });
+    })
+    .catch((error) => {
+      console.error("Lỗi khi lấy số liệu vé theo năm:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    });
+};
+// lấy tổng tiền trong ngày
+module.exports.getTotalRevenueByDay = (req, res) => {
+  const requestedDate = req.query.date ? new Date(req.query.date) : new Date();
+  bookingModel
+    .getTotalRevenueByDay(requestedDate)
+    .then((result) => {
+      res.status(200).json({ totalRevenue: result });
+    })
+    .catch((error) => {
+      console.error("Lỗi khi lấy tổng số tiền vé trong ngày:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    });
+};
+//lấy tổng tiền theo tháng
+module.exports.getTotalRevenueByMonth = (req, res) => {
+  const { month, year } = req.query; // Giả sử tham số được truyền qua là một phần của URL
+  bookingModel
+    .getTotalRevenueByMonth(month, year)
+    .then((result) => {
+      res.status(200).json({ totalRevenue: result });
+    })
+    .catch((error) => {
+      console.error("Lỗi khi lấy tổng số tiền vé trong tháng:", error);
+      res.status(500).json({ error: "Internal Server Error" });
     });
 };

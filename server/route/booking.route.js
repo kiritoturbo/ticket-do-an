@@ -9,6 +9,12 @@ router.get("/", [
   verifyAuth.minimumPermissionLevelRequired(config.permissionLevel.ADMIN),
   controller.list,
 ]);
+router.get("/getTicket", controller.getTicketCountByDay);
+router.get("/getTicketMonth", controller.getTicketCountByMonth);
+router.get("/getTicketYear", controller.getTicketCountByYear);
+router.get("/getPriceTicketDay", controller.getTotalRevenueByDay);
+router.get("/getPriceTicketMonth", controller.getTotalRevenueByMonth);
+
 router.get("/confirm/:pnr", controller.verifyUser);
 router.post("/email", controller.sendEmailll);
 

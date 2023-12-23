@@ -31,8 +31,19 @@ exports.isAuthenticated = async (req, res, next) => {
 
 //middleware for admin
 exports.isAdmin = (req, res, next) => {
-  if (req.user.permissionLevel === "1") {
-    return next(new ErrorResponse("Access denied, you must an admin", 401));
+  // console.log(req.user.permissionLevel);
+  if (req.user.permissionLevel == "1") {
+    // return next(new ErrorResponse("Access denied, you must an admin", 401));
+    return res.status(400).json({ error: "Bạn chưa phải admin" });
+  }
+  next();
+};
+//middleware for nhân viên
+exports.isNhanVien = (req, res, next) => {
+  console.log(req.user.permissionLevel);
+  if (req.user.permissionLevel == "2047") {
+    // return next(new ErrorResponse("Access denied, you must an admin", 401));
+    return res.status(400).json({ error: "Bạn cần được cấp quyền bởi admin" });
   }
   next();
 };
